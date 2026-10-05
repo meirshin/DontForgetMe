@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Don\'t Forget Me</string>
+    <string name="channel_name">Back seat reminder</string>
+    <string name="channel_description">Reminder to check the car after disconnecting from its Bluetooth</string>
+    <string name="reminder_title">Check the back seat!</string>
+    <string name="reminder_text">You left the car a few minutes ago. Did you forget a child in the car?</string>
+    <string name="action_ok">All good</string>
+    <string name="action_snooze">Remind me in a minute</string>
+</resources>
