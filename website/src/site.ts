@@ -1,6 +1,7 @@
 export const SITE_URL = 'https://ym987.github.io/DontForgetMe';
 export const PLAY_URL =
   'https://play.google.com/store/apps/details?id=io.github.ym987.dontforgetme';
+export const SOURCE_URL = 'https://github.com/ym987/DontForgetMe';
 export const DEVELOPER = 'ymark987';
 export const CONTACT_EMAIL = 'ymark987@gmail.com';
 export const POLICY_UPDATED = new Date('2026-10-07T00:00:00Z');

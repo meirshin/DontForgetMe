@@ -30,7 +30,16 @@ npm start          # Metro
 npm run android    # build & install on a device/emulator
 ```
 
-Release APK: `cd android && ./gradlew assembleRelease`.
+### Release builds
+
+```sh
+npm run build:apk  # release APK (runs `gradlew.bat assembleRelease` in android/)
+```
+
+- Output: `android/app/build/outputs/apk/release/app-release.apk`.
+- `build:apk` uses `gradlew.bat` and therefore runs on Windows only. On macOS/Linux run `cd android && ./gradlew assembleRelease`.
+- For Google Play, build an App Bundle instead: `cd android && ./gradlew bundleRelease` (output: `android/app/build/outputs/bundle/release/app-release.aab`).
+- Release builds are signed with the upload key when the Gradle properties `DFM_UPLOAD_STORE_FILE`, `DFM_UPLOAD_KEY_ALIAS`, `DFM_UPLOAD_STORE_PASSWORD` and `DFM_UPLOAD_KEY_PASSWORD` are set (e.g. in `~/.gradle/gradle.properties`); otherwise they fall back to the debug key.
 
 ## Website
 

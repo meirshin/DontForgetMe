@@ -3,6 +3,7 @@ import {
   CONTACT_EMAIL,
   DEVELOPER,
   POLICY_UPDATED,
+  SOURCE_URL,
   href,
   type Lang,
   type Route,
@@ -55,6 +56,7 @@ export function App({ route }: { route: Route }) {
           <a href={href({ lang: route.lang, page: 'privacy' })}>
             {t.nav.privacy}
           </a>
+          <a href={SOURCE_URL}>{t.nav.source}</a>
           <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
         </div>
       </footer>
@@ -120,6 +122,16 @@ function Home({ t }: PageProps) {
       <section className="notice" aria-labelledby="disclaimer">
         <h2 id="disclaimer">{h.disclaimerTitle}</h2>
         <p>{h.disclaimer}</p>
+      </section>
+
+      <section aria-labelledby="source">
+        <h2 id="source">{h.sourceTitle}</h2>
+        <p>{h.source}</p>
+        <p>
+          <a href={SOURCE_URL} dir="ltr">
+            {SOURCE_URL.replace('https://', '')}
+          </a>
+        </p>
       </section>
 
       <section aria-labelledby="contact">

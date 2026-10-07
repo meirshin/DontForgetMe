@@ -48,7 +48,12 @@ const listPermissions = (list: Permission[]) =>
 
 const en = {
   appName: "Don't Forget Me",
-  nav: { home: 'Home', privacy: 'Privacy policy', otherLang: 'עברית' },
+  nav: {
+    home: 'Home',
+    privacy: 'Privacy policy',
+    source: 'Source code',
+    otherLang: 'עברית',
+  },
   skipToContent: 'Skip to content',
   home: {
     title: "Don't Forget Me – a back-seat reminder for parents",
@@ -103,6 +108,9 @@ const en = {
     disclaimerTitle: 'Important',
     disclaimer:
       "Don't Forget Me is a supporting tool and does not replace a parent’s responsibility and attention. The reminder depends on your phone, the Bluetooth connection and system settings, and may not work in every situation. Always check the back seat before you lock the car.",
+    sourceTitle: 'Open source',
+    source:
+      'The app is open source. You are welcome to browse the code, report issues and suggest improvements on GitHub:',
     contactTitle: 'Contact',
     contact: 'Questions, suggestions or bug reports? Email',
   },
@@ -190,7 +198,12 @@ const en = {
 
 const he: typeof en = {
   appName: 'אל תשכח אותי',
-  nav: { home: 'דף הבית', privacy: 'מדיניות פרטיות', otherLang: 'English' },
+  nav: {
+    home: 'דף הבית',
+    privacy: 'מדיניות פרטיות',
+    source: 'קוד מקור',
+    otherLang: 'English',
+  },
   skipToContent: 'דלג לתוכן',
   home: {
     title: 'אל תשכח אותי – תזכורת לבדוק את המושב האחורי',
@@ -245,6 +258,9 @@ const he: typeof en = {
     disclaimerTitle: 'חשוב לדעת',
     disclaimer:
       'אל תשכח אותי היא כלי עזר בלבד ואינה מחליפה את האחריות ותשומת הלב של ההורה. פעולת התזכורת תלויה בטלפון, בחיבור הבלוטוס ובהגדרות המערכת, וייתכן שלא תפעל בכל מצב. תמיד בדקו את המושב האחורי לפני נעילת הרכב.',
+    sourceTitle: 'קוד פתוח',
+    source:
+      'קוד המקור של האפליקציה פתוח לכולם. מוזמנים לעיין בו, לדווח על תקלות ולהציע שיפורים בגיטהאב:',
     contactTitle: 'יצירת קשר',
     contact: 'שאלות, הצעות או דיווח על תקלה? כתבו לנו לכתובת',
   },
