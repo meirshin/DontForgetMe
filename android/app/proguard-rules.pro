@@ -8,3 +8,6 @@
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
 # Add any project specific keep options here:
+
+# TurboModule methods are invoked from native code by name.
+-keep class com.dontforgetme.CarBluetoothModule { public *; }

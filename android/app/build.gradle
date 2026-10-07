@@ -57,7 +57,7 @@ react {
 /**
  * Set this to true to Run Proguard on Release builds to minify the Java bytecode.
  */
-def enableProguardInReleaseBuilds = false
+def enableProguardInReleaseBuilds = true
 
 def hasReleaseSigning =
     project.hasProperty("DFM_UPLOAD_STORE_FILE") &&
@@ -119,6 +119,7 @@ android {
             // Use upload keystore for Play builds, with debug fallback for local dev.
             signingConfig hasReleaseSigning ? signingConfigs.release : signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
+            shrinkResources enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
