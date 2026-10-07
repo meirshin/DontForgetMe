@@ -85,6 +85,11 @@ function HomeScreen() {
   const [selected, setSelected] = useState<string[]>([]);
   const [devices, setDevices] = useState<PairedDevice[]>([]);
   const [perms, setPerms] = useState<PermState | null>(null);
+  const [saved, setSaved] = useState({
+    enabled: true,
+    delay: 5,
+    selected: [] as string[],
+  });
 
   const refresh = useCallback(async () => {
     const bluetooth = await isGranted(BLUETOOTH, 31);
@@ -111,6 +116,11 @@ function HomeScreen() {
       setEnabled(s.enabled);
       setDelay(s.delayMinutes);
       setSelected(s.selectedDevices);
+      setSaved({
+        enabled: s.enabled,
+        delay: s.delayMinutes,
+        selected: s.selectedDevices,
+      });
     });
     PermissionsAndroid.requestMultiple(runtimePermissions()).finally(refresh);
     const sub = AppState.addEventListener('change', state => {
@@ -119,23 +129,30 @@ function HomeScreen() {
     return () => sub.remove();
   }, [refresh]);
 
-  const toggleEnabled = (value: boolean) => {
-    setEnabled(value);
-    NativeCarBluetooth.setEnabled(value);
-  };
-
   const changeDelay = (diff: number) => {
-    const value = Math.min(MAX_DELAY, Math.max(MIN_DELAY, delay + diff));
-    setDelay(value);
-    NativeCarBluetooth.setDelayMinutes(value);
+    setDelay(Math.min(MAX_DELAY, Math.max(MIN_DELAY, delay + diff)));
   };
 
   const toggleDevice = (address: string) => {
-    const next = selected.includes(address)
-      ? selected.filter(a => a !== address)
-      : [...selected, address];
-    setSelected(next);
-    NativeCarBluetooth.setSelectedDevices(next);
+    setSelected(
+      selected.includes(address)
+        ? selected.filter(a => a !== address)
+        : [...selected, address],
+    );
+  };
+
+  const dirty =
+    enabled !== saved.enabled ||
+    delay !== saved.delay ||
+    selected.length !== saved.selected.length ||
+    selected.some(a => !saved.selected.includes(a));
+
+  const save = () => {
+    NativeCarBluetooth.setEnabled(enabled);
+    NativeCarBluetooth.setDelayMinutes(delay);
+    NativeCarBluetooth.setSelectedDevices(selected);
+    setSaved({ enabled, delay, selected });
+    Alert.alert(t.appTitle, t.saved);
   };
 
   const fixPermission = async (key: PermKey) => {
@@ -167,6 +184,7 @@ function HomeScreen() {
     { key: 'exactAlarms', label: t.permExactAlarms },
     { key: 'battery', label: t.permBattery },
   ];
+  const allGranted = perms !== null && permRows.every(r => perms[r.key]);
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -179,7 +197,7 @@ function HomeScreen() {
             <Text style={styles.rowLabel}>{t.monitoring}</Text>
             <Switch
               value={enabled}
-              onValueChange={toggleEnabled}
+              onValueChange={setEnabled}
               trackColor={{ true: colors.primary }}
             />
           </View>
@@ -191,7 +209,8 @@ function HomeScreen() {
         {perms && (
           <View style={styles.card}>
             <Text style={styles.cardTitle}>{t.permissionsTitle}</Text>
-            {permRows.map(({ key, label }) => (
+            {allGranted && <Text style={styles.ok}>{t.allGranted}</Text>}
+            {!allGranted && permRows.map(({ key, label }) => (
               <View key={key} style={styles.row}>
                 <Text style={styles.rowLabel}>{label}</Text>
                 {perms[key] ? (
@@ -260,6 +279,11 @@ function HomeScreen() {
             </Pressable>
           ))}
         </View>
+
+        {dirty && <Text style={styles.warning}>{t.unsaved}</Text>}
+        <Pressable testID="save" style={styles.saveButton} onPress={save}>
+          <Text style={styles.buttonText}>{t.save}</Text>
+        </Pressable>
 
         <Pressable style={styles.button} onPress={sendTest}>
           <Text style={styles.buttonText}>{t.test}</Text>
@@ -331,6 +355,12 @@ const styles = StyleSheet.create({
     color: colors.text,
     minWidth: 110,
     textAlign: 'center',
+  },
+  saveButton: {
+    backgroundColor: colors.primary,
+    borderRadius: 12,
+    padding: 14,
+    alignItems: 'center',
   },
   button: {
     backgroundColor: colors.text,

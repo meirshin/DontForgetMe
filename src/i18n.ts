@@ -12,6 +12,7 @@ const en = {
   permBattery: 'Run without battery restrictions',
   allow: 'Allow',
   granted: 'OK',
+  allGranted: '✓ All permissions granted',
   delayTitle: 'Remind me after',
   minutes: (n: number) => (n === 1 ? '1 minute' : `${n} minutes`),
   devicesTitle: 'Car Bluetooth devices',
@@ -23,6 +24,9 @@ const en = {
   refresh: 'Refresh',
   test: 'Send a test reminder (10 seconds)',
   testSent: 'A test reminder will appear in 10 seconds.',
+  save: 'Save settings',
+  saved: 'Your settings have been saved.',
+  unsaved: 'You have unsaved changes.',
 };
 
 const he: typeof en = {
@@ -37,6 +41,7 @@ const he: typeof en = {
   permBattery: 'פעולה ללא הגבלת סוללה',
   allow: 'אפשר',
   granted: 'תקין',
+  allGranted: '✓ כל ההרשאות עודכנו',
   delayTitle: 'הזכר לי אחרי',
   minutes: (n: number) => (n === 1 ? 'דקה אחת' : `${n} דקות`),
   devicesTitle: 'מכשירי הבלוטוס של הרכב',
@@ -48,6 +53,9 @@ const he: typeof en = {
   refresh: 'רענן',
   test: 'שלח תזכורת לבדיקה (10 שניות)',
   testSent: 'תזכורת בדיקה תופיע בעוד 10 שניות.',
+  save: 'שמור הגדרות',
+  saved: 'ההגדרות נשמרו בהצלחה.',
+  unsaved: 'יש שינויים שלא נשמרו.',
 };
 
 const lang = NativeCarBluetooth.getDeviceLanguage();
