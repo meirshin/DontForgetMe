@@ -32,6 +32,21 @@ npm run android    # build & install on a device/emulator
 
 Release APK: `cd android && ./gradlew assembleRelease`.
 
+## Website
+
+`website/` is the app's home page and privacy policy (English + Hebrew), published to
+https://ym987.github.io/DontForgetMe/ by `.github/workflows/website.yml`.
+It is a separate Vite + React project, prerendered to static HTML at build time.
+
+```sh
+cd website
+npm install
+npm run dev        # http://localhost:5173/DontForgetMe/
+npm run build      # static output in website/dist
+```
+
+When the app's data handling changes, update `website/src/content.ts` and `POLICY_UPDATED` in `website/src/site.ts`.
+
 ## Structure
 
 - `App.tsx` - settings screen

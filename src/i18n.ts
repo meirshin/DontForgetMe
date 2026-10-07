@@ -27,6 +27,8 @@ const en = {
   save: 'Save settings',
   saved: 'Your settings have been saved.',
   unsaved: 'You have unsaved changes.',
+  privacyPolicy: 'Privacy policy',
+  privacyUrl: 'https://ym987.github.io/DontForgetMe/privacy/',
 };
 
 const he: typeof en = {
@@ -56,6 +58,8 @@ const he: typeof en = {
   save: 'שמור הגדרות',
   saved: 'ההגדרות נשמרו בהצלחה.',
   unsaved: 'יש שינויים שלא נשמרו.',
+  privacyPolicy: 'מדיניות פרטיות',
+  privacyUrl: 'https://ym987.github.io/DontForgetMe/he/privacy/',
 };
 
 const lang = NativeCarBluetooth.getDeviceLanguage();

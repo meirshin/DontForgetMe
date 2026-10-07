@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
+    paths-ignore: ['website/**', '.github/workflows/website.yml']
 
 jobs:
   build:

@@ -288,6 +288,10 @@ function HomeScreen() {
         <Pressable style={styles.button} onPress={sendTest}>
           <Text style={styles.buttonText}>{t.test}</Text>
         </Pressable>
+
+        <Pressable onPress={() => Linking.openURL(t.privacyUrl)}>
+          <Text style={styles.footerLink}>{t.privacyPolicy}</Text>
+        </Pressable>
       </ScrollView>
     </SafeAreaView>
   );
@@ -327,6 +331,13 @@ const styles = StyleSheet.create({
   warning: { fontSize: 13, color: colors.warn },
   ok: { fontSize: 14, color: colors.ok, fontWeight: '600' },
   link: { fontSize: 14, color: colors.primary, fontWeight: '600' },
+  footerLink: {
+    fontSize: 14,
+    color: colors.primary,
+    fontWeight: '600',
+    textAlign: 'center',
+    paddingVertical: 8,
+  },
   smallButton: {
     backgroundColor: colors.primary,
     borderRadius: 8,
