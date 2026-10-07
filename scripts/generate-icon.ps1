@@ -1,5 +1,7 @@
-# Generates the Android launcher icons (legacy, round and adaptive foreground) and a
-# 512px preview at assets/icon.png. Run from anywhere: powershell -File scripts/generate-icon.ps1
+﻿# Generates the Android launcher icons (legacy, round and adaptive foreground), a
+# 512px preview at assets/icon.png and the 1024x500 Play Store feature graphics at
+# assets/feature-graphic.png (English) and assets/feature-graphic-he.png (Hebrew).
+# Run from anywhere: powershell -File scripts/generate-icon.ps1
 Add-Type -AssemblyName System.Drawing
 $ErrorActionPreference = 'Stop'
 
@@ -138,4 +140,57 @@ MapArtwork $preview.G 512 10 98
 DrawCar $preview.G
 Save $preview (Join-Path $root 'assets\icon.png')
 
-Write-Host 'Icons generated.'
+# Play Store feature graphic (1024x500, no transparency). In RTL the layout is mirrored.
+function FeatureGraphic($title, $tagline, $badges, $rtl, $path) {
+  $fw = 1024; $fh = 500
+  $bmp = New-Object System.Drawing.Bitmap $fw, $fh, ([System.Drawing.Imaging.PixelFormat]::Format24bppRgb)
+  $g = [System.Drawing.Graphics]::FromImage($bmp)
+  $g.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::AntiAlias
+  $g.PixelOffsetMode = [System.Drawing.Drawing2D.PixelOffsetMode]::HighQuality
+  $g.TextRenderingHint = [System.Drawing.Text.TextRenderingHint]::AntiAliasGridFit
+  $rect = New-Object System.Drawing.RectangleF 0, 0, $fw, $fh
+  $g.FillRectangle((New-Object System.Drawing.Drawing2D.LinearGradientBrush $rect, $bgTop, $bgBottom, ([single]35)), $rect)
+
+  # Rectangles are laid out for LTR and mirrored horizontally for RTL.
+  $box = {
+    param($x, $y, $w, $h)
+    if ($rtl) { $x = $fw - $x - $w }
+    New-Object System.Drawing.RectangleF ([single]$x), ([single]$y), ([single]$w), ([single]$h)
+  }
+
+  $halo = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::FromArgb(40, 255, 255, 255))
+  $g.FillEllipse($halo, (& $box 35 45 410 410))
+
+  # Car centered in the halo; the artwork's car spans roughly (22..86, 33..79) units.
+  $carX = if ($rtl) { $fw - 240 } else { 240 }
+  $g.TranslateTransform($carX, 250)
+  $g.ScaleTransform(5.6, 5.6)
+  $g.TranslateTransform(-54, -56)
+  DrawCar $g
+  $g.ResetTransform()
+
+  $px = [System.Drawing.GraphicsUnit]::Pixel
+  $regular = [System.Drawing.FontStyle]::Regular
+  $titleFont = New-Object System.Drawing.Font 'Segoe UI', ([single]62), ([System.Drawing.FontStyle]::Bold), $px
+  $tagFont = New-Object System.Drawing.Font 'Segoe UI Semibold', ([single]31), $regular, $px
+  $badgeFont = New-Object System.Drawing.Font 'Segoe UI', ([single]25), $regular, $px
+  $fmt = New-Object System.Drawing.StringFormat
+  if ($rtl) { $fmt.FormatFlags = [System.Drawing.StringFormatFlags]::DirectionRightToLeft }
+  $white = Brush '#FFFFFF'
+  $g.DrawString($title, $titleFont, $white, (& $box 466 126 550 90), $fmt)
+  $g.DrawString($tagline, $tagFont, $white, (& $box 470 220 510 100), $fmt)
+  $g.DrawString($badges, $badgeFont, (Brush '#FFE8CC'), (& $box 472 340 510 40), $fmt)
+
+  $g.Dispose()
+  $bmp.Save($path, [System.Drawing.Imaging.ImageFormat]::Png)
+  $bmp.Dispose()
+}
+
+$dot = [char]0x00B7
+FeatureGraphic "Don't Forget Me" 'A reminder to check the back seat every time you leave the car.' `
+  "Free $dot No ads $dot No account" $false (Join-Path $root 'assets\feature-graphic.png')
+# This file must be saved as UTF-8 with BOM so Windows PowerShell reads the Hebrew correctly.
+FeatureGraphic 'אל תשכח אותי' 'תזכורת לבדוק את המושב האחורי בכל פעם שיוצאים מהרכב.' `
+  "חינם $dot ללא פרסומות $dot ללא הרשמה" $true (Join-Path $root 'assets\feature-graphic-he.png')
+
+Write-Host 'Icons and feature graphics generated.'
