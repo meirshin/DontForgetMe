@@ -2,7 +2,6 @@ import { content, type Block, type Content } from './content';
 import {
   CONTACT_EMAIL,
   DEVELOPER,
-  PLAY_URL,
   POLICY_UPDATED,
   href,
   type Lang,
@@ -68,7 +67,7 @@ interface PageProps {
   lang: Lang;
 }
 
-function Home({ t, lang }: PageProps) {
+function Home({ t }: PageProps) {
   const h = t.home;
   return (
     <>
@@ -77,9 +76,7 @@ function Home({ t, lang }: PageProps) {
         <h1>{t.appName}</h1>
         <p className="tagline">{h.tagline}</p>
         <p>{h.intro}</p>
-        <a className="button" href={`${PLAY_URL}&hl=${lang}`} rel="noopener">
-          {h.cta}
-        </a>
+        <p className="coming-soon">{h.cta}</p>
         <p className="muted">{h.badges}</p>
       </section>
 

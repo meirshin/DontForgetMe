@@ -57,7 +57,7 @@ const en = {
     tagline: 'A reminder to check the back seat — every time you leave the car.',
     intro:
       'The app notices when your phone disconnects from your car’s Bluetooth and, a few minutes later, asks: “Did you forget a child in the car?”',
-    cta: 'Get it on Google Play',
+    cta: 'Coming soon to Google Play',
     badges: 'Free · No ads · No account · Android',
     howTitle: 'How it works',
     steps: [
@@ -199,7 +199,7 @@ const he: typeof en = {
     tagline: 'תזכורת לבדוק את המושב האחורי – בכל פעם שיוצאים מהרכב.',
     intro:
       'האפליקציה מזהה מתי הטלפון מתנתק מהבלוטוס של הרכב, ואחרי כמה דקות שואלת: "האם שכחת ילד באוטו?"',
-    cta: 'להורדה מחנות Google Play',
+    cta: 'בקרוב בחנות Google Play',
     badges: 'חינם · ללא פרסומות · ללא הרשמה · אנדרואיד',
     howTitle: 'איך זה עובד',
     steps: [
