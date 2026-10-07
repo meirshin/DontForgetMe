@@ -79,7 +79,7 @@ android {
 
     namespace "com.dontforgetme"
     defaultConfig {
-        applicationId "com.dontforgetme"
+        applicationId "io.github.ym987.dontforgetme"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
