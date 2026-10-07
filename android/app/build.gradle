@@ -59,6 +59,16 @@ react {
  */
 def enableProguardInReleaseBuilds = false
 
+def hasReleaseSigning =
+    project.hasProperty("DFM_UPLOAD_STORE_FILE") &&
+    project.hasProperty("DFM_UPLOAD_KEY_ALIAS") &&
+    project.hasProperty("DFM_UPLOAD_STORE_PASSWORD") &&
+    project.hasProperty("DFM_UPLOAD_KEY_PASSWORD") &&
+    project.property("DFM_UPLOAD_STORE_FILE").toString().trim() &&
+    project.property("DFM_UPLOAD_KEY_ALIAS").toString().trim() &&
+    project.property("DFM_UPLOAD_STORE_PASSWORD").toString().trim() &&
+    project.property("DFM_UPLOAD_KEY_PASSWORD").toString().trim()
+
 /**
  * The preferred build flavor of JavaScriptCore (JSC)
  *
@@ -92,15 +102,22 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            if (hasReleaseSigning) {
+                storeFile file(DFM_UPLOAD_STORE_FILE)
+                storePassword DFM_UPLOAD_STORE_PASSWORD
+                keyAlias DFM_UPLOAD_KEY_ALIAS
+                keyPassword DFM_UPLOAD_KEY_PASSWORD
+            }
+        }
     }
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
         }
         release {
-            // Caution! In production, you need to generate your own keystore file.
-            // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            // Use upload keystore for Play builds, with debug fallback for local dev.
+            signingConfig hasReleaseSigning ? signingConfigs.release : signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
