@@ -78,9 +78,27 @@ const isLang = (code: string): code is Lang => code in strings;
 /** Java still reports a few languages by their old codes. */
 const LEGACY_CODES: Record<string, string> = { iw: 'he', in: 'id', ji: 'yi' };
 
+function getDeviceLanguageSafe(): string {
+  return typeof NativeCarBluetooth.getDeviceLanguage === 'function'
+    ? NativeCarBluetooth.getDeviceLanguage()
+    : 'en';
+}
+
+function getSavedLanguageSafe(): string {
+  return typeof NativeCarBluetooth.getLanguage === 'function'
+    ? NativeCarBluetooth.getLanguage()
+    : '';
+}
+
+function setSavedLanguageSafe(language: Lang | ''): void {
+  if (typeof NativeCarBluetooth.setLanguage === 'function') {
+    NativeCarBluetooth.setLanguage(language);
+  }
+}
+
 /** The phone's language if the app speaks it, otherwise English. */
 export function phoneLanguage(): Lang {
-  const code = NativeCarBluetooth.getDeviceLanguage();
+  const code = getDeviceLanguageSafe();
   const normalized = LEGACY_CODES[code] ?? code;
   return isLang(normalized) ? normalized : 'en';
 }
@@ -105,7 +123,7 @@ const I18nContext = createContext<I18n>({
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [choice, setChoiceState] = useState<Lang | ''>(() => {
-    const saved = NativeCarBluetooth.getLanguage();
+    const saved = getSavedLanguageSafe();
     return isLang(saved) ? saved : '';
   });
 
@@ -119,7 +137,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const setChoice = useCallback((next: Lang | '') => {
-    NativeCarBluetooth.setLanguage(next);
+    setSavedLanguageSafe(next);
     setChoiceState(next);
   }, []);
 

@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+  <!-- for emulators use only  <uses-permission android:name="android.permission.INTERNET" /> -->
+
     <!-- Bluetooth: detect connection / disconnection of the car -->
     <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
