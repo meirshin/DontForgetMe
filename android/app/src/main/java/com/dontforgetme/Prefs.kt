@@ -7,8 +7,9 @@ object Prefs {
   private const val KEY_ENABLED = "enabled"
   private const val KEY_DELAY = "delay_minutes"
   private const val KEY_DEVICES = "devices"
+  private const val KEY_KNOWN_CARS = "known_cars"
 
-  const val DEFAULT_DELAY_MINUTES = 5
+  const val DEFAULT_DELAY_MINUTES = 2
   const val MIN_DELAY_MINUTES = 1
   const val MAX_DELAY_MINUTES = 60
 
@@ -32,4 +33,20 @@ object Prefs {
 
   fun setDevices(c: Context, value: Set<String>) =
       prefs(c).edit().putStringSet(KEY_DEVICES, value).apply()
+
+  /**
+   * Car devices are monitored by default the first time they are seen. After that the user's
+   * choice is kept. Users who saved a device selection before this existed keep it as is.
+   */
+  fun addNewCars(c: Context, carAddresses: Collection<String>) {
+    val p = prefs(c)
+    val known = p.getStringSet(KEY_KNOWN_CARS, null)?.toSet()
+    val fresh = carAddresses.filter { known == null || it !in known }
+    if (fresh.isEmpty()) return
+    val edit = p.edit().putStringSet(KEY_KNOWN_CARS, known.orEmpty() + fresh)
+    if (known != null || !p.contains(KEY_DEVICES)) {
+      edit.putStringSet(KEY_DEVICES, devices(c) + fresh)
+    }
+    edit.apply()
+  }
 }

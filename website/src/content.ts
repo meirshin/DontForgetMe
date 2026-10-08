@@ -76,7 +76,7 @@ const en = {
       },
       {
         title: 'Get a reminder',
-        text: 'A few minutes after you disconnect (5 by default, adjustable from 1 to 60) a notification appears. If you reconnect before that, the reminder is cancelled.',
+        text: 'A few minutes after you disconnect (2 by default, adjustable from 1 to 60) a notification appears. If you reconnect before that, the reminder is cancelled.',
       },
       {
         title: 'Respond',
@@ -226,7 +226,7 @@ const he: typeof en = {
       },
       {
         title: 'מקבלים תזכורת',
-        text: 'כמה דקות אחרי הניתוק (5 כברירת מחדל, ניתן לשנות בין 1 ל-60) מופיעה התראה. אם הטלפון מתחבר שוב לרכב לפני כן, התזכורת מבוטלת.',
+        text: 'כמה דקות אחרי הניתוק (2 כברירת מחדל, ניתן לשנות בין 1 ל-60) מופיעה התראה. אם הטלפון מתחבר שוב לרכב לפני כן, התזכורת מבוטלת.',
       },
       {
         title: 'מגיבים',

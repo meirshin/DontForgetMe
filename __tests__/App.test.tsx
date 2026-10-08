@@ -35,23 +35,48 @@ test('renders correctly', async () => {
   });
 });
 
-test('saves settings and confirms with a popup', async () => {
-  const { Alert } = require('react-native');
-  const native = require('../specs/NativeCarBluetooth').default;
-  const alert = jest.spyOn(Alert, 'alert').mockImplementation(() => {});
+async function renderApp() {
   let renderer!: ReactTestRenderer.ReactTestRenderer;
   await ReactTestRenderer.act(() => {
     renderer = ReactTestRenderer.create(<App />);
   });
+  const press = (testID: string) =>
+    ReactTestRenderer.act(() => {
+      renderer.root.findAllByProps({ testID })[0].props.onPress();
+    });
+  const find = (testID: string) => renderer.root.findAllByProps({ testID })[0];
+  return { press, find };
+}
+
+test('monitoring switch on the home screen applies immediately', async () => {
+  const native = require('../specs/NativeCarBluetooth').default;
+  const { find } = await renderApp();
 
   await ReactTestRenderer.act(() => {
-    renderer.root.findAllByProps({ testID: 'save' })[0].props.onPress();
+    find('monitoring').props.onValueChange(false);
   });
 
-  expect(native.setDelayMinutes).toHaveBeenCalledWith(5);
+  expect(native.setEnabled).toHaveBeenCalledWith(false);
+});
+
+test('save is enabled only with unsaved changes and confirms with a popup', async () => {
+  const { Alert } = require('react-native');
+  const native = require('../specs/NativeCarBluetooth').default;
+  const alert = jest.spyOn(Alert, 'alert').mockImplementation(() => {});
+  const { press, find } = await renderApp();
+
+  await press('openSettings');
+  expect(find('save').props.disabled).toBe(true);
+
+  await press('delayPlus');
+  expect(find('save').props.disabled).toBe(false);
+
+  await press('save');
+  expect(native.setDelayMinutes).toHaveBeenCalledWith(6);
   expect(native.setSelectedDevices).toHaveBeenCalledWith([]);
   expect(alert).toHaveBeenCalledWith(
     "Don't Forget Me",
     'Your settings have been saved.',
   );
+  expect(find('save').props.disabled).toBe(true);
 });

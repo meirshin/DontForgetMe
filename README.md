@@ -4,8 +4,8 @@ Android app (React Native) that reminds the driver to check the back seat for a 
 
 ## How it works
 
-- Pick your car's Bluetooth device(s) from the list of paired devices.
-- When the phone disconnects from the car, a reminder is scheduled after N minutes (default 5, configurable 1-60).
+- Pick your car's Bluetooth device(s) from the list of paired devices in **Settings**. Devices recognized as a car (car audio / hands-free) are monitored by default and can be switched off like any other device.
+- When the phone disconnects from the car, a reminder is scheduled after N minutes (default 2, configurable 1-60).
 - If the phone reconnects to the car before that, the reminder is cancelled.
 - The notification asks "Did you forget a child in the car?" with **All good** / **Remind me in a minute** buttons.
 - Detection runs natively (`BroadcastReceiver` for `ACL_CONNECTED` / `ACL_DISCONNECTED`), so it works even when the app is closed - no persistent background service is needed.

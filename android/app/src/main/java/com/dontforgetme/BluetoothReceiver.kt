@@ -21,8 +21,6 @@ import android.os.Build
  */
 class BluetoothReceiver : BroadcastReceiver() {
   override fun onReceive(context: Context, intent: Intent) {
-    if (!Prefs.isEnabled(context)) return
-
     val device: BluetoothDevice? =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
           intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE, BluetoothDevice::class.java)
@@ -30,6 +28,11 @@ class BluetoothReceiver : BroadcastReceiver() {
           @Suppress("DEPRECATION") intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)
         }
     val address = device?.address ?: return
+    if (intent.action == BluetoothDevice.ACTION_ACL_CONNECTED && device.isCar()) {
+      Prefs.addNewCars(context, listOf(address))
+    }
+
+    if (!Prefs.isEnabled(context)) return
     if (address !in Prefs.devices(context)) return
 
     when (intent.action) {

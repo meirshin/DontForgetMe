@@ -2,6 +2,7 @@ package com.dontforgetme
 
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothClass
+import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
 import android.content.Intent
 import android.net.Uri
@@ -28,17 +29,14 @@ class CarBluetoothModule(reactContext: ReactApplicationContext) :
     try {
       val adapter = ctx.getSystemService(BluetoothManager::class.java)?.adapter
       val result = Arguments.createArray()
-      adapter?.bondedDevices?.forEach { d ->
-        val cls = d.bluetoothClass?.deviceClass
+      val bonded = adapter?.bondedDevices.orEmpty()
+      Prefs.addNewCars(ctx, bonded.filter { it.isCar() }.map { it.address })
+      bonded.forEach { d ->
         result.pushMap(
             Arguments.createMap().apply {
               putString("name", d.name ?: d.address)
               putString("address", d.address)
-              putBoolean(
-                  "isCar",
-                  cls == BluetoothClass.Device.AUDIO_VIDEO_CAR_AUDIO ||
-                      cls == BluetoothClass.Device.AUDIO_VIDEO_HANDSFREE,
-              )
+              putBoolean("isCar", d.isCar())
             })
       }
       promise.resolve(result)
@@ -106,4 +104,11 @@ class CarBluetoothModule(reactContext: ReactApplicationContext) :
   companion object {
     const val NAME = "NativeCarBluetooth"
   }
+}
+
+@SuppressLint("MissingPermission")
+internal fun BluetoothDevice.isCar(): Boolean {
+  val cls = runCatching { bluetoothClass?.deviceClass }.getOrNull()
+  return cls == BluetoothClass.Device.AUDIO_VIDEO_CAR_AUDIO ||
+      cls == BluetoothClass.Device.AUDIO_VIDEO_HANDSFREE
 }
