@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">لا تنسني</string>
+    <string name="channel_name">تذكير المقعد الخلفي</string>
+    <string name="channel_description">تذكير بتفقّد السيارة بعد انقطاع اتصال الهاتف ببلوتوث السيارة</string>
+    <string name="reminder_title">تفقّد المقعد الخلفي!</string>
+    <string name="reminder_text">غادرت السيارة قبل بضع دقائق. هل نسيت طفلًا في السيارة؟</string>
+    <string name="action_ok">كل شيء بخير</string>
+    <string name="action_snooze">ذكّرني بعد دقيقة</string>
+</resources>

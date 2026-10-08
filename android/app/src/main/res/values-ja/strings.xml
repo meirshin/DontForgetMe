@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">忘れないで</string>
+    <string name="channel_name">後部座席のリマインダー</string>
+    <string name="channel_description">車のBluetoothとの接続が切れた後に、車内を確認するようお知らせします</string>
+    <string name="reminder_title">後部座席を確認してください！</string>
+    <string name="reminder_text">数分前に車を離れました。車内にお子さまを残していませんか？</string>
+    <string name="action_ok">大丈夫です</string>
+    <string name="action_snooze">1分後に再通知</string>
+</resources>

@@ -8,11 +8,11 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.media.AudioAttributes
-import android.media.AudioManager
-import android.media.RingtoneManager
+import android.content.res.Configuration
 import android.os.Build
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
+import java.util.Locale
 
 /** Schedules and shows the "did you forget a child in the car?" reminder. */
 object Reminder {
@@ -21,7 +21,10 @@ object Reminder {
   const val ACTION_SNOOZE = "com.dontforgetme.action.SNOOZE"
   const val SNOOZE_MS = 60_000L
 
-  private const val CHANNEL_ID = "child_reminder"
+  // The sound is played by AlertSound, so the channel itself is silent. Channel sounds can't
+  // be changed once created, hence the new id; the old channel is removed.
+  private const val CHANNEL_ID = "child_reminder_v2"
+  private const val LEGACY_CHANNEL_ID = "child_reminder"
   private const val NOTIFICATION_ID = 1001
   private const val REQ_ALARM = 1
   private const val REQ_OPEN = 2
@@ -60,13 +63,24 @@ object Reminder {
   }
 
   fun dismissNotification(c: Context) {
+    AlertSound.stop(c)
     c.getSystemService(NotificationManager::class.java).cancel(NOTIFICATION_ID)
   }
 
-  private fun alarmSound() = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+  /** Texts in the language chosen in the app, or the phone's language. */
+  private fun localized(c: Context): Context {
+    val language = Prefs.language(c).ifEmpty {
+      return c
+    }
+    val config = Configuration(c.resources.configuration)
+    config.setLocale(Locale.forLanguageTag(language))
+    return c.createConfigurationContext(config)
+  }
 
   private fun ensureChannel(c: Context) {
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return
+    val nm = c.getSystemService(NotificationManager::class.java)
+    nm.deleteNotificationChannel(LEGACY_CHANNEL_ID)
     val channel =
         NotificationChannel(
                 CHANNEL_ID,
@@ -78,23 +92,22 @@ object Reminder {
               enableVibration(true)
               vibrationPattern = VIBRATION
               lockscreenVisibility = NotificationCompat.VISIBILITY_PUBLIC
-              setSound(
-                  alarmSound(),
-                  AudioAttributes.Builder()
-                      .setUsage(AudioAttributes.USAGE_ALARM)
-                      .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                      .build(),
-              )
+              setSound(null, null)
             }
-    c.getSystemService(NotificationManager::class.java).createNotificationChannel(channel)
+    nm.createNotificationChannel(channel)
   }
 
-  fun show(c: Context) {
+  /**
+   * Shows the reminder and plays its sound. Returns false if notifications are not allowed;
+   * otherwise [soundDone] runs once the sound has finished.
+   */
+  fun show(app: Context, soundDone: () -> Unit): Boolean {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
-        c.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) !=
+        app.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) !=
             PackageManager.PERMISSION_GRANTED) {
-      return
+      return false
     }
+    val c = localized(app)
     ensureChannel(c)
 
     val openApp =
@@ -109,6 +122,7 @@ object Reminder {
     val notification =
         NotificationCompat.Builder(c, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notification)
+            .setColor(ContextCompat.getColor(c, R.color.notification_accent))
             .setContentTitle(c.getString(R.string.reminder_title))
             .setContentText(c.getString(R.string.reminder_text))
             .setStyle(NotificationCompat.BigTextStyle().bigText(c.getString(R.string.reminder_text)))
@@ -116,7 +130,6 @@ object Reminder {
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setVibrate(VIBRATION)
-            .setSound(alarmSound(), AudioManager.STREAM_ALARM)
             .setAutoCancel(true)
             .setContentIntent(openApp)
             .addAction(0, c.getString(R.string.action_ok), receiverIntent(c, ACTION_DISMISS, REQ_DISMISS))
@@ -125,5 +138,7 @@ object Reminder {
             .build()
 
     c.getSystemService(NotificationManager::class.java).notify(NOTIFICATION_ID, notification)
+    AlertSound.playReminder(app, soundDone)
+    return true
   }
 }

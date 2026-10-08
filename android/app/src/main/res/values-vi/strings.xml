@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Đừng Quên Tôi</string>
+    <string name="channel_name">Lời nhắc kiểm tra ghế sau</string>
+    <string name="channel_description">Lời nhắc kiểm tra xe sau khi điện thoại ngắt kết nối với Bluetooth của xe</string>
+    <string name="reminder_title">Hãy kiểm tra ghế sau!</string>
+    <string name="reminder_text">Bạn đã rời khỏi xe vài phút trước. Bạn có để quên trẻ nhỏ trên xe không?</string>
+    <string name="action_ok">Mọi thứ đều ổn</string>
+    <string name="action_snooze">Nhắc lại sau 1 phút</string>
+</resources>

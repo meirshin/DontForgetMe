@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">আমাকে ভুলো না</string>
+    <string name="channel_name">পেছনের সিটের রিমাইন্ডার</string>
+    <string name="channel_description">গাড়ির ব্লুটুথ থেকে ডিসকানেক্ট হওয়ার পর গাড়ি দেখে নেওয়ার রিমাইন্ডার</string>
+    <string name="reminder_title">পেছনের সিট দেখে নিন!</string>
+    <string name="reminder_text">কয়েক মিনিট আগে আপনি গাড়ি থেকে নেমেছেন। গাড়িতে কোনো শিশুকে ভুলে রেখে আসেননি তো?</string>
+    <string name="action_ok">সব ঠিক আছে</string>
+    <string name="action_snooze">1 মিনিট পরে আবার মনে করিয়ে দিন</string>
+</resources>

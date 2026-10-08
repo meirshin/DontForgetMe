@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">나를 잊지 마세요</string>
+    <string name="channel_name">뒷좌석 확인 알림</string>
+    <string name="channel_description">차량 블루투스 연결이 끊긴 뒤 차 안을 확인하도록 알려 주는 알림</string>
+    <string name="reminder_title">뒷좌석을 확인하세요!</string>
+    <string name="reminder_text">몇 분 전에 차에서 내리셨어요. 차 안에 아이를 두고 내리지 않으셨나요?</string>
+    <string name="action_ok">이상 없음</string>
+    <string name="action_snooze">1분 후 다시 알림</string>
+</resources>

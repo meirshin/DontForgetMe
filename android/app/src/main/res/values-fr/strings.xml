@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ne m’oubliez pas</string>
+    <string name="channel_name">Rappel pour la banquette arrière</string>
+    <string name="channel_description">Rappel pour vérifier la voiture après la déconnexion de son Bluetooth</string>
+    <string name="reminder_title">Vérifiez la banquette arrière&#160;!</string>
+    <string name="reminder_text">Vous avez quitté la voiture il y a quelques minutes. Avez-vous oublié un enfant à bord&#160;?</string>
+    <string name="action_ok">Tout va bien</string>
+    <string name="action_snooze">Rappeler dans 1&#160;minute</string>
+</resources>

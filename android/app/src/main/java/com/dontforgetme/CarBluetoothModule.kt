@@ -53,6 +53,9 @@ class CarBluetoothModule(reactContext: ReactApplicationContext) :
           putBoolean("enabled", Prefs.isEnabled(ctx))
           putInt("delayMinutes", Prefs.delayMinutes(ctx))
           putArray("selectedDevices", devices)
+          putString("sound", Prefs.sound(ctx))
+          putInt("volume", Prefs.volume(ctx))
+          putBoolean("overrideVolume", Prefs.overrideVolume(ctx))
         })
   }
 
@@ -68,6 +71,19 @@ class CarBluetoothModule(reactContext: ReactApplicationContext) :
     for (i in 0 until addresses.size()) addresses.getString(i)?.let { set.add(it) }
     Prefs.setDevices(ctx, set)
   }
+
+  override fun setSound(sound: String) {
+    if (AlertSound.isKnown(sound)) Prefs.setSound(ctx, sound)
+  }
+
+  override fun setVolume(volume: Double) = Prefs.setVolume(ctx, volume.toInt())
+
+  override fun setOverrideVolume(enabled: Boolean) = Prefs.setOverrideVolume(ctx, enabled)
+
+  override fun previewSound(sound: String, volume: Double, overrideVolume: Boolean) =
+      AlertSound.play(ctx, sound, volume.toInt(), overrideVolume)
+
+  override fun stopSound() = AlertSound.stop(ctx)
 
   override fun getSystemStatus(promise: Promise) {
     val pm = ctx.getSystemService(PowerManager::class.java)
@@ -94,6 +110,14 @@ class CarBluetoothModule(reactContext: ReactApplicationContext) :
   }
 
   override fun getDeviceLanguage(): String = Locale.getDefault().language
+
+  override fun getLanguage(): String = Prefs.language(ctx)
+
+  override fun setLanguage(language: String) = Prefs.setLanguage(ctx, language)
+
+  override fun isDisclaimerAccepted(): Boolean = Prefs.disclaimerAccepted(ctx)
+
+  override fun acceptDisclaimer() = Prefs.acceptDisclaimer(ctx)
 
   override fun testReminder(seconds: Double) = Reminder.schedule(ctx, (seconds * 1000).toLong())
 

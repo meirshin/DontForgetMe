@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Не забудь меня</string>
+    <string name="channel_name">Напоминание о заднем сиденье</string>
+    <string name="channel_description">Напоминание проверить автомобиль после отключения от его Bluetooth</string>
+    <string name="reminder_title">Проверьте заднее сиденье!</string>
+    <string name="reminder_text">Вы вышли из автомобиля несколько минут назад. Вы не забыли в нём ребёнка?</string>
+    <string name="action_ok">Всё в порядке</string>
+    <string name="action_snooze">Напомнить через минуту</string>
+</resources>

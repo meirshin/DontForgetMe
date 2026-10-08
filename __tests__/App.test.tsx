@@ -6,6 +6,9 @@ import React from 'react';
 import ReactTestRenderer from 'react-test-renderer';
 import App from '../App';
 
+// Animations run on timers; keep them from firing after a test has finished.
+jest.useFakeTimers();
+
 jest.mock(
   'react-native-safe-area-context',
   () => require('react-native-safe-area-context/jest/mock').default,
@@ -15,8 +18,19 @@ jest.mock('../specs/NativeCarBluetooth', () => ({
   __esModule: true,
   default: {
     getDeviceLanguage: () => 'en',
+    getLanguage: () => '',
+    setLanguage: jest.fn(),
+    isDisclaimerAccepted: jest.fn(() => true),
+    acceptDisclaimer: jest.fn(),
     getSettings: () =>
-      Promise.resolve({ enabled: true, delayMinutes: 5, selectedDevices: [] }),
+      Promise.resolve({
+        enabled: true,
+        delayMinutes: 5,
+        selectedDevices: [],
+        sound: 'chimes',
+        volume: 90,
+        overrideVolume: true,
+      }),
     getSystemStatus: () =>
       Promise.resolve({ exactAlarms: true, batteryUnrestricted: true }),
     getPairedDevices: () => Promise.resolve([]),
@@ -26,6 +40,11 @@ jest.mock('../specs/NativeCarBluetooth', () => ({
     openExactAlarmSettings: jest.fn(),
     requestIgnoreBatteryOptimizations: jest.fn(),
     testReminder: jest.fn(),
+    setSound: jest.fn(),
+    setVolume: jest.fn(),
+    setOverrideVolume: jest.fn(),
+    previewSound: jest.fn(),
+    stopSound: jest.fn(),
   },
 }));
 
@@ -45,7 +64,9 @@ async function renderApp() {
       renderer.root.findAllByProps({ testID })[0].props.onPress();
     });
   const find = (testID: string) => renderer.root.findAllByProps({ testID })[0];
-  return { press, find };
+  const hasText = (text: string) =>
+    renderer.root.findAll(n => n.props.children === text).length > 0;
+  return { press, find, hasText, root: renderer.root };
 }
 
 test('monitoring switch on the home screen applies immediately', async () => {
@@ -59,11 +80,9 @@ test('monitoring switch on the home screen applies immediately', async () => {
   expect(native.setEnabled).toHaveBeenCalledWith(false);
 });
 
-test('save is enabled only with unsaved changes and confirms with a popup', async () => {
-  const { Alert } = require('react-native');
+test('save is enabled only with unsaved changes and confirms with a toast', async () => {
   const native = require('../specs/NativeCarBluetooth').default;
-  const alert = jest.spyOn(Alert, 'alert').mockImplementation(() => {});
-  const { press, find } = await renderApp();
+  const { press, find, hasText } = await renderApp();
 
   await press('openSettings');
   expect(find('save').props.disabled).toBe(true);
@@ -74,9 +93,91 @@ test('save is enabled only with unsaved changes and confirms with a popup', asyn
   await press('save');
   expect(native.setDelayMinutes).toHaveBeenCalledWith(6);
   expect(native.setSelectedDevices).toHaveBeenCalledWith([]);
-  expect(alert).toHaveBeenCalledWith(
-    "Don't Forget Me",
-    'Your settings have been saved.',
-  );
+  expect(hasText('Your settings have been saved.')).toBe(true);
   expect(find('save').props.disabled).toBe(true);
+});
+
+test('leaving settings with unsaved changes asks first', async () => {
+  const native = require('../specs/NativeCarBluetooth').default;
+  native.setDelayMinutes.mockClear();
+  const { press, find, hasText } = await renderApp();
+
+  await press('openSettings');
+  await press('delayMinus');
+  await press('back');
+  expect(hasText('Save your changes before leaving?')).toBe(true);
+  expect(find('save')).toBeDefined();
+  expect(native.setDelayMinutes).not.toHaveBeenCalled();
+});
+
+test('sends a test reminder', async () => {
+  const native = require('../specs/NativeCarBluetooth').default;
+  const { press, root, hasText } = await renderApp();
+
+  await press('openSettings');
+  await ReactTestRenderer.act(() => {
+    root
+      .findAll(n => n.props.title === 'Send a test reminder (10 seconds)')[0]
+      .props.onPress();
+  });
+  expect(native.testReminder).toHaveBeenCalledWith(10);
+  expect(hasText('A test reminder will appear in 10 seconds.')).toBe(true);
+});
+
+test('sound settings are saved together with the other settings', async () => {
+  const native = require('../specs/NativeCarBluetooth').default;
+  const { press, find } = await renderApp();
+
+  await press('openSettings');
+  await ReactTestRenderer.act(() => {
+    find('overrideVolume').props.onValueChange(false);
+  });
+  expect(find('save').props.disabled).toBe(false);
+
+  await press('save');
+  expect(native.setSound).toHaveBeenCalledWith('chimes');
+  expect(native.setVolume).toHaveBeenCalledWith(90);
+  expect(native.setOverrideVolume).toHaveBeenCalledWith(false);
+});
+
+test('switching the language applies at once, right-to-left for Hebrew', async () => {
+  const native = require('../specs/NativeCarBluetooth').default;
+  const { press, root, hasText } = await renderApp();
+
+  await press('openSettings');
+  await press('language');
+  await press('lang-he');
+
+  expect(native.setLanguage).toHaveBeenCalledWith('he');
+  expect(hasText('הגדרות')).toBe(true);
+  const rtlRoots = root.findAll(
+    n =>
+      typeof n.type === 'string' &&
+      [n.props.style].flat(Infinity).some((st: any) => st?.direction === 'rtl'),
+  );
+  expect(rtlRoots.length).toBeGreaterThan(0);
+});
+
+test('on first launch the safety notice must be accepted before permissions are requested', async () => {
+  const native = require('../specs/NativeCarBluetooth').default;
+  const { PermissionsAndroid } = require('react-native');
+  const request = jest
+    .spyOn(PermissionsAndroid, 'requestMultiple')
+    .mockResolvedValue({});
+  native.isDisclaimerAccepted.mockReturnValueOnce(false);
+  const { press, find } = await renderApp();
+
+  // Let the intro animation finish (it runs in two stages).
+  for (let i = 0; i < 4; i++) {
+    await ReactTestRenderer.act(() => {
+      jest.advanceTimersByTime(1000);
+    });
+  }
+  expect(request).not.toHaveBeenCalled();
+  expect(find('acceptLegal')).toBeDefined();
+
+  await press('acceptLegal');
+  expect(native.acceptDisclaimer).toHaveBeenCalled();
+  expect(request).toHaveBeenCalled();
+  request.mockRestore();
 });
