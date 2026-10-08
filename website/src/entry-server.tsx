@@ -31,7 +31,10 @@ function renderHead(route: Route) {
     `<meta property="og:title" content="${escape(title)}" />`,
     `<meta property="og:description" content="${escape(description)}" />`,
     `<meta property="og:url" content="${url}" />`,
-    `<meta property="og:image" content="${SITE_URL}/icon.png" />`,
+    `<meta property="og:image" content="${SITE_URL}/og-${route.lang}.png" />`,
+    `<meta property="og:image:width" content="1024" />`,
+    `<meta property="og:image:height" content="500" />`,
+    `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta property="og:locale" content="${locales[route.lang]}" />`,
   ].join('\n    ');
 }
