@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Beni Unutma</string>
+    <string name="channel_name">Arka koltuk hatırlatması</string>
+    <string name="channel_description">Araçla Bluetooth bağlantısı kesildikten sonra aracı kontrol etmeniz için hatırlatma</string>
+    <string name="reminder_title">Arka koltuğu kontrol edin!</string>
+    <string name="reminder_text">Birkaç dakika önce araçtan indiniz. Araçta çocuk unuttunuz mu?</string>
+    <string name="action_ok">Her şey yolunda</string>
+    <string name="action_snooze">Bir dakika sonra hatırlat</string>
+</resources>

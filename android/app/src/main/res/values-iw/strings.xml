@@ -3,7 +3,7 @@
     <string name="channel_name">תזכורת מושב אחורי</string>
     <string name="channel_description">תזכורת לבדוק את הרכב לאחר התנתקות מהבלוטוס שלו</string>
     <string name="reminder_title">בדוק את המושב האחורי!</string>
-    <string name="reminder_text">יצאת מהרכב לפני כמה דקות. האם שכחת ילד באוטו?</string>
+    <string name="reminder_text">יצאת מהרכב לפני כמה דקות. האם שכחת ילד ברכב?</string>
     <string name="action_ok">הכל בסדר</string>
     <string name="action_snooze">הזכר לי שוב בעוד דקה</string>
 </resources>

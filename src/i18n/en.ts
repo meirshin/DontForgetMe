@@ -1,0 +1,141 @@
+const minutes = (n: number) => (n === 1 ? '1 minute' : `${n} minutes`);
+
+export const en = {
+  appTitle: "Don't Forget Me",
+  subtitle:
+    "Get a reminder to check the back seat a few minutes after you disconnect from your car's Bluetooth.",
+  tagline: 'Free · No ads · No sign-up',
+
+  // Home
+  statusActive: 'Active',
+  statusOff: 'Off',
+  statusSetup: 'Needs setup',
+  monitoringOn: 'Monitoring active',
+  monitoringOff: 'Monitoring off',
+  monitoringToggle: 'Back-seat monitoring',
+  monitoringOffHint: 'You will not get reminders while monitoring is off.',
+  setupTitle: 'Choose your car',
+  noneSelected: 'Select at least one car device to start monitoring.',
+  chooseDevices: 'Choose devices',
+  reminderAfter: (n: number) =>
+    `A reminder ${minutes(n)} after disconnecting from the car.`,
+  delayTile: 'Reminder after',
+  carsTile: 'Cars monitored',
+  carsNone: 'None selected',
+  minuteUnit: (n: number): string => (n === 1 ? 'minute' : 'minutes'),
+  minShort: (n: number) => `${n} min`,
+  permissionsTitle: 'Permissions',
+  permissionsProgress: (granted: number, total: number) =>
+    `${granted} of ${total}`,
+  permBluetooth: 'Bluetooth access',
+  permBluetoothWhy: 'Detects when you leave the car',
+  permNotifications: 'Notifications',
+  permNotificationsWhy: 'Shows the reminder',
+  permExactAlarms: 'On-time reminders (exact alarms)',
+  permExactAlarmsWhy: 'Delivers the reminder right on time',
+  permBattery: 'Run without battery restrictions',
+  permBatteryWhy: "So the system won't delay the reminder",
+  allow: 'Allow',
+  granted: 'OK',
+  allGranted: 'All permissions granted',
+  allGrantedHint: 'Everything is set for reminders to arrive on time.',
+  howTitle: 'How it works',
+  steps: [
+    { title: 'Drive', text: 'Your phone connects to the car' },
+    { title: 'Leave', text: 'Bluetooth disconnects' },
+    { title: 'Check', text: 'A reminder to look in the back' },
+  ],
+
+  // Settings
+  settings: 'Settings',
+  back: 'Back',
+  delayTitle: 'Remind me after',
+  devicesTitle: 'Car Bluetooth devices',
+  devicesHint:
+    "Select your car's Bluetooth device(s). Devices recognized as a car are monitored by default.",
+  noDevices: 'No paired devices found. Pair your phone with the car first.',
+  needBluetooth: 'Allow Bluetooth access to see your devices.',
+  carTag: 'Car',
+  refresh: 'Refresh',
+  soundTitle: 'Reminder sound',
+  soundNames: {
+    chimes: 'Chimes',
+    marimba: 'Marimba',
+    harp: 'Harp',
+    musicbox: 'Music box',
+    bells: 'Bells',
+    piano: 'Piano',
+    pizzicato: 'Pizzicato',
+    steeldrum: 'Steel drum',
+    synth: 'Synth',
+    chiptune: 'Arcade',
+    system: "Phone's alarm sound",
+  },
+  chooseSound: 'Choose a sound',
+  play: 'Play',
+  stop: 'Stop',
+  volume: 'Volume',
+  percent: (n: number) => `${n}%`,
+  overrideVolume: 'Louder than the phone volume',
+  overrideVolumeHint:
+    "Raises the phone's alarm volume while the reminder plays, even if the phone is set to quiet.",
+  done: 'Done',
+  languageTitle: 'Language',
+  languageAuto: 'Phone language',
+  testTitle: 'Test the reminder',
+  testHint:
+    'Send a sample reminder to make sure the sound and the notification work.',
+  test: 'Send a test reminder (10 seconds)',
+  testSent: 'A test reminder will appear in 10 seconds.',
+  save: 'Save settings',
+  saved: 'Your settings have been saved.',
+  allSaved: 'All changes saved',
+  unsaved: 'You have unsaved changes.',
+  unsavedTitle: 'Unsaved changes',
+  unsavedPrompt: 'Save your changes before leaving?',
+  discard: 'Leave without saving',
+  cancel: 'Stay',
+  privacyPolicy: 'Privacy policy',
+  privacyUrl: 'https://ym987.github.io/DontForgetMe/privacy/',
+  contactDesigner: 'Email the designer',
+  // Legal (draft, pending legal review)
+  legalTitle: 'Important safety notice',
+  legalPoints: [
+    "Don't Forget Me is a reminder aid only. It is not a safety or life-saving system and does not replace your own responsibility and attention.",
+    'Reminders depend on your phone, Bluetooth, permissions, battery settings and the operating system, and may be delayed or not arrive at all.',
+    'Always check the back seat yourself every time you leave the car. Never rely on the app alone.',
+    'The app is provided “as is”. To the fullest extent permitted by law, its developers accept no liability for any harm or damage arising from its use or from a reminder that was delayed or not delivered.',
+  ],
+  legalAccept: 'I understand and agree',
+  legalReadFull: 'Read the full terms',
+  termsTitle: 'Terms of use and disclaimer',
+  terms: [
+    {
+      title: 'A reminder aid only',
+      text: "Don't Forget Me (“the App”) is a free tool designed to help drivers remember to check the back seat after leaving the vehicle. The App is not a medical device, a safety system, a child-presence detection system or an emergency service, and it is not designed or guaranteed to prevent injury or death.",
+    },
+    {
+      title: 'Your responsibility',
+      text: 'Responsibility for the safety and supervision of children and other passengers rests solely with the driver and the person in charge of them. You must check the vehicle yourself every time you leave it, whether or not you receive a reminder.',
+    },
+    {
+      title: 'No guarantee of operation',
+      text: "The App depends on factors outside the developers' control, including the phone's hardware and operating system, the Bluetooth connection with the vehicle, permissions, battery-saving and Do Not Disturb settings, sound volume, and the phone being switched on and charged. Reminders may be delayed, may not be heard or may not be delivered at all.",
+    },
+    {
+      title: 'No warranty',
+      text: 'The App is provided “as is” and “as available”, without warranties of any kind, express or implied, including any warranty of fitness for a particular purpose, accuracy, reliability or uninterrupted operation.',
+    },
+    {
+      title: 'Limitation of liability',
+      text: 'To the fullest extent permitted by applicable law, the developers, designers and distributors of the App shall not be liable for any direct, indirect, incidental or consequential damage, injury or loss of any kind, including bodily injury or death, arising out of or in connection with the use of, or inability to use, the App, or any reminder that was delayed, not delivered or not noticed.',
+    },
+    {
+      title: 'Acceptance',
+      text: 'By using the App you confirm that you have read and understood these terms and agree to them. If you do not agree, do not use the App.',
+    },
+  ],
+  legalNotice: 'A reminder aid only. Always check the back seat yourself.',
+};
+
+export type Strings = typeof en;

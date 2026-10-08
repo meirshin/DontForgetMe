@@ -1,0 +1,5 @@
+<resources>
+    <!-- Brand colors, see src/theme.ts -->
+    <color name="splash_background">#0B0E3A</color>
+    <color name="notification_accent">#4651E6</color>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">No me olvides</string>
+    <string name="channel_name">Recordatorio del asiento trasero</string>
+    <string name="channel_description">Recordatorio para revisar el vehículo después de desconectarte de su Bluetooth</string>
+    <string name="reminder_title">¡Revisa el asiento trasero!</string>
+    <string name="reminder_text">Saliste del vehículo hace unos minutos. ¿Olvidaste a un niño dentro?</string>
+    <string name="action_ok">Todo bien</string>
+    <string name="action_snooze">Recordar en 1 minuto</string>
+</resources>

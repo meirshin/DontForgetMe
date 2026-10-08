@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">मुझे मत भूलना</string>
+    <string name="channel_name">पिछली सीट का रिमाइंडर</string>
+    <string name="channel_description">कार के ब्लूटूथ से डिस्कनेक्ट होने के बाद कार जाँचने का रिमाइंडर</string>
+    <string name="reminder_title">पिछली सीट जाँचें!</string>
+    <string name="reminder_text">आपको कार से उतरे कुछ मिनट हो गए हैं। कहीं कार में कोई बच्चा तो नहीं छूट गया?</string>
+    <string name="action_ok">सब ठीक है</string>
+    <string name="action_snooze">1 मिनट बाद फिर याद दिलाएँ</string>
+</resources>

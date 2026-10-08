@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Jangan Lupakan Aku</string>
+    <string name="channel_name">Pengingat kursi belakang</string>
+    <string name="channel_description">Pengingat untuk memeriksa mobil setelah ponsel terputus dari Bluetooth mobil</string>
+    <string name="reminder_title">Periksa kursi belakang!</string>
+    <string name="reminder_text">Anda keluar dari mobil beberapa menit yang lalu. Apakah ada anak yang tertinggal di dalam mobil?</string>
+    <string name="action_ok">Semua aman</string>
+    <string name="action_snooze">Ingatkan lagi dalam 1 menit</string>
+</resources>

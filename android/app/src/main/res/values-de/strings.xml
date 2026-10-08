@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Vergissmeinnicht</string>
+    <string name="channel_name">Rückbank-Erinnerung</string>
+    <string name="channel_description">Erinnerung, das Auto zu prüfen, nachdem sich das Handy von dessen Bluetooth getrennt hat</string>
+    <string name="reminder_title">Prüfe die Rückbank!</string>
+    <string name="reminder_text">Du hast das Auto vor ein paar Minuten verlassen. Hast du ein Kind im Auto vergessen?</string>
+    <string name="action_ok">Alles in Ordnung</string>
+    <string name="action_snooze">In einer Minute erinnern</string>
+</resources>

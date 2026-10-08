@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">勿忘我</string>
+    <string name="channel_name">后座提醒</string>
+    <string name="channel_description">与汽车蓝牙断开连接后，提醒您检查车内情况</string>
+    <string name="reminder_title">请检查后座！</string>
+    <string name="reminder_text">您几分钟前已离开汽车。是否把孩子忘在车里了？</string>
+    <string name="action_ok">一切正常</string>
+    <string name="action_snooze">1 分钟后再提醒</string>
+</resources>
