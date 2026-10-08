@@ -22,7 +22,7 @@ export const ru: Strings = {
   statusSetup: 'Не настроено',
   monitoringOn: 'Контроль включён',
   monitoringOff: 'Контроль выключен',
-  monitoringToggle: 'Контроль заднего сиденья',
+  monitoringToggle: 'Напоминание при выходе из машины',
   monitoringOffHint: 'Пока контроль выключен, напоминания не приходят.',
   setupTitle: 'Выберите автомобиль',
   noneSelected:

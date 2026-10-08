@@ -14,7 +14,7 @@ export const de: Strings = {
   statusSetup: 'Einrichtung nötig',
   monitoringOn: 'Überwachung aktiv',
   monitoringOff: 'Überwachung aus',
-  monitoringToggle: 'Rückbank-Überwachung',
+  monitoringToggle: 'Erinnerung beim Verlassen des Autos',
   monitoringOffHint:
     'Solange die Überwachung aus ist, bekommst du keine Erinnerungen.',
   setupTitle: 'Wähle dein Auto',

@@ -13,7 +13,7 @@ export const it: Strings = {
   statusSetup: 'Da configurare',
   monitoringOn: 'Monitoraggio attivo',
   monitoringOff: 'Monitoraggio disattivato',
-  monitoringToggle: 'Monitoraggio del sedile posteriore',
+  monitoringToggle: "Promemoria quando scendi dall'auto",
   monitoringOffHint:
     'Non riceverai promemoria finché il monitoraggio è disattivato.',
   setupTitle: 'Scegli la tua auto',

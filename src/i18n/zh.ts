@@ -10,7 +10,7 @@ export const zh: Strings = {
   statusSetup: '待设置',
   monitoringOn: '监测已开启',
   monitoringOff: '监测已关闭',
-  monitoringToggle: '后座监测',
+  monitoringToggle: '下车提醒',
   monitoringOffHint: '监测关闭期间，您不会收到提醒。',
   setupTitle: '选择您的汽车',
   noneSelected: '请至少选择一个车载蓝牙设备以开始监测。',

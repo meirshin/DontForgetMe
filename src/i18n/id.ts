@@ -11,7 +11,7 @@ export const id: Strings = {
   statusSetup: 'Perlu diatur',
   monitoringOn: 'Pemantauan aktif',
   monitoringOff: 'Pemantauan nonaktif',
-  monitoringToggle: 'Pemantauan kursi belakang',
+  monitoringToggle: 'Pengingat saat keluar dari mobil',
   monitoringOffHint:
     'Anda tidak akan menerima pengingat selama pemantauan nonaktif.',
   setupTitle: 'Pilih mobil Anda',

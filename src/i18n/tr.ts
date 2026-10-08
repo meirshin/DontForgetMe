@@ -13,7 +13,7 @@ export const tr: Strings = {
   statusSetup: 'Kurulum gerekli',
   monitoringOn: 'İzleme etkin',
   monitoringOff: 'İzleme kapalı',
-  monitoringToggle: 'Arka koltuk izlemesi',
+  monitoringToggle: 'Araçtan inince hatırlatma',
   monitoringOffHint: 'İzleme kapalıyken hatırlatma almazsınız.',
   setupTitle: 'Aracınızı seçin',
   noneSelected: 'İzlemeyi başlatmak için en az bir araç cihazı seçin.',

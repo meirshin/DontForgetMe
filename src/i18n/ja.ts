@@ -11,7 +11,7 @@ export const ja: Strings = {
   statusSetup: '要設定',
   monitoringOn: '見守り中',
   monitoringOff: '見守りオフ',
-  monitoringToggle: '後部座席の見守り',
+  monitoringToggle: '降車時のリマインダー',
   monitoringOffHint: '見守りがオフの間は、リマインダーは届きません。',
   setupTitle: '車を選択',
   noneSelected: '見守りを始めるには、車のデバイスを1つ以上選択してください。',

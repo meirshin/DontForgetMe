@@ -21,7 +21,7 @@ export const ar: Strings = {
   statusSetup: 'يلزم الإعداد',
   monitoringOn: 'المراقبة مفعّلة',
   monitoringOff: 'المراقبة متوقفة',
-  monitoringToggle: 'مراقبة المقعد الخلفي',
+  monitoringToggle: 'تذكير عند مغادرة السيارة',
   monitoringOffHint: 'لن تصلك تذكيرات ما دامت المراقبة متوقفة.',
   setupTitle: 'اختر سيارتك',
   noneSelected: 'اختر جهازًا واحدًا على الأقل من أجهزة السيارة لبدء المراقبة.',

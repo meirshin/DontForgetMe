@@ -11,7 +11,7 @@ export const ko: Strings = {
   statusSetup: '설정 필요',
   monitoringOn: '모니터링 중',
   monitoringOff: '모니터링 꺼짐',
-  monitoringToggle: '뒷좌석 모니터링',
+  monitoringToggle: '하차 시 알림',
   monitoringOffHint: '모니터링이 꺼져 있는 동안에는 알림을 받지 않아요.',
   setupTitle: '차량을 선택하세요',
   noneSelected: '모니터링을 시작하려면 차량 기기를 하나 이상 선택하세요.',

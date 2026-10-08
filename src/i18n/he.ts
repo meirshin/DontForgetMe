@@ -13,7 +13,7 @@ export const he: Strings = {
   statusSetup: 'נדרשת הגדרה',
   monitoringOn: 'ניטור פעיל',
   monitoringOff: 'ניטור כבוי',
-  monitoringToggle: 'ניטור המושב האחורי',
+  monitoringToggle: 'תזכורת ביציאה מהרכב',
   monitoringOffHint: 'לא יישלחו תזכורות כל עוד הניטור כבוי.',
   setupTitle: 'בחר את הרכב שלך',
   noneSelected: 'בחר לפחות מכשיר רכב אחד כדי להתחיל בניטור.',

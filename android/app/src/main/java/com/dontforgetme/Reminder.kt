@@ -41,6 +41,14 @@ object Reminder {
           PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
       )
 
+  private fun actionIntent(c: Context, action: String, requestCode: Int): PendingIntent =
+      PendingIntent.getService(
+          c,
+          requestCode,
+          Intent(c, ReminderActionService::class.java).setAction(action),
+          PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
+      )
+
   fun canScheduleExact(c: Context): Boolean =
       Build.VERSION.SDK_INT < Build.VERSION_CODES.S ||
           c.getSystemService(AlarmManager::class.java).canScheduleExactAlarms()
@@ -132,9 +140,9 @@ object Reminder {
             .setVibrate(VIBRATION)
             .setAutoCancel(true)
             .setContentIntent(openApp)
-            .addAction(0, c.getString(R.string.action_ok), receiverIntent(c, ACTION_DISMISS, REQ_DISMISS))
+            .addAction(0, c.getString(R.string.action_ok), actionIntent(c, ACTION_DISMISS, REQ_DISMISS))
             .addAction(
-                0, c.getString(R.string.action_snooze), receiverIntent(c, ACTION_SNOOZE, REQ_SNOOZE))
+                0, c.getString(R.string.action_snooze), actionIntent(c, ACTION_SNOOZE, REQ_SNOOZE))
             .build()
 
     c.getSystemService(NotificationManager::class.java).notify(NOTIFICATION_ID, notification)

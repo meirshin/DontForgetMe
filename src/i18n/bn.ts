@@ -11,7 +11,7 @@ export const bn: Strings = {
   statusSetup: 'সেটআপ দরকার',
   monitoringOn: 'নজরদারি চালু',
   monitoringOff: 'নজরদারি বন্ধ',
-  monitoringToggle: 'পেছনের সিটে নজরদারি',
+  monitoringToggle: 'গাড়ি থেকে নামার পর রিমাইন্ডার',
   monitoringOffHint: 'নজরদারি বন্ধ থাকলে কোনো রিমাইন্ডার পাবেন না।',
   setupTitle: 'আপনার গাড়ি বেছে নিন',
   noneSelected: 'নজরদারি শুরু করতে অন্তত একটি গাড়ির ডিভাইস বেছে নিন।',

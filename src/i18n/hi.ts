@@ -11,7 +11,7 @@ export const hi: Strings = {
   statusSetup: 'सेटअप ज़रूरी',
   monitoringOn: 'निगरानी चालू है',
   monitoringOff: 'निगरानी बंद है',
-  monitoringToggle: 'पिछली सीट की निगरानी',
+  monitoringToggle: 'कार से उतरने पर रिमाइंडर',
   monitoringOffHint: 'निगरानी बंद रहने तक आपको रिमाइंडर नहीं मिलेंगे।',
   setupTitle: 'अपनी कार चुनें',
   noneSelected: 'निगरानी शुरू करने के लिए कम से कम एक कार डिवाइस चुनें।',

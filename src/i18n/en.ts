@@ -12,7 +12,7 @@ export const en = {
   statusSetup: 'Needs setup',
   monitoringOn: 'Monitoring active',
   monitoringOff: 'Monitoring off',
-  monitoringToggle: 'Back-seat monitoring',
+  monitoringToggle: 'Reminder when leaving the car',
   monitoringOffHint: 'You will not get reminders while monitoring is off.',
   setupTitle: 'Choose your car',
   noneSelected: 'Select at least one car device to start monitoring.',

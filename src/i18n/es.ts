@@ -13,7 +13,7 @@ export const es: Strings = {
   statusSetup: 'Sin configurar',
   monitoringOn: 'Supervisión activa',
   monitoringOff: 'Supervisión desactivada',
-  monitoringToggle: 'Supervisión del asiento trasero',
+  monitoringToggle: 'Recordatorio al salir del coche',
   monitoringOffHint:
     'No recibirás recordatorios mientras la supervisión esté desactivada.',
   setupTitle: 'Elige tu vehículo',

@@ -18,7 +18,7 @@ export const fr: Strings = {
   statusSetup: 'À configurer',
   monitoringOn: 'Surveillance active',
   monitoringOff: 'Surveillance désactivée',
-  monitoringToggle: 'Surveillance de la banquette arrière',
+  monitoringToggle: 'Rappel en quittant la voiture',
   monitoringOffHint:
     'Vous ne recevrez aucun rappel tant que la surveillance est désactivée.',
   setupTitle: 'Choisissez votre voiture',

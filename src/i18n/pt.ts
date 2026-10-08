@@ -14,7 +14,7 @@ export const pt: Strings = {
   statusSetup: 'Não configurado',
   monitoringOn: 'Monitoramento ativo',
   monitoringOff: 'Monitoramento desligado',
-  monitoringToggle: 'Monitoramento do banco de trás',
+  monitoringToggle: 'Lembrete ao sair do carro',
   monitoringOffHint:
     'Você não vai receber lembretes enquanto o monitoramento estiver desligado.',
   setupTitle: 'Escolha seu carro',

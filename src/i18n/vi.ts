@@ -11,7 +11,7 @@ export const vi: Strings = {
   statusSetup: 'Cần thiết lập',
   monitoringOn: 'Đang theo dõi',
   monitoringOff: 'Đã tắt theo dõi',
-  monitoringToggle: 'Theo dõi ghế sau',
+  monitoringToggle: 'Nhắc nhở khi rời xe',
   monitoringOffHint:
     'Bạn sẽ không nhận được lời nhắc khi tính năng theo dõi đang tắt.',
   setupTitle: 'Chọn xe của bạn',

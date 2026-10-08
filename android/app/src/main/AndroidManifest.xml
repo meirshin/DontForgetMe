@@ -53,5 +53,10 @@
       <receiver
         android:name=".ReminderReceiver"
         android:exported="false" />
+
+      <!-- Notification buttons: a service, so they aren't queued behind the playing alarm broadcast -->
+      <service
+        android:name=".ReminderActionService"
+        android:exported="false" />
     </application>
 </manifest>
