@@ -50,6 +50,7 @@ const en = {
   appName: "Don't Forget Me",
   nav: {
     home: 'Home',
+    how: 'How it works',
     privacy: 'Privacy policy',
     source: 'Source code',
     otherLang: 'עברית',
@@ -59,11 +60,17 @@ const en = {
     title: "Don't Forget Me – a back-seat reminder for parents",
     description:
       "Free Android app that reminds you to check the back seat a few minutes after your phone disconnects from your car's Bluetooth.",
-    tagline: 'A reminder to check the back seat — every time you leave the car.',
+    eyebrow: 'Free Android app',
+    headline: 'Never leave anyone behind',
+    tagline: 'A reminder to check the back seat, every time you leave the car.',
     intro:
       'The app notices when your phone disconnects from your car’s Bluetooth and, a few minutes later, asks: “Did you forget a child in the car?”',
     cta: 'Coming soon to Google Play',
-    badges: 'Free · No ads · No account · Android',
+    ctaSmall: 'Coming soon to',
+    badges: ['Free', 'No ads', 'No sign-up', '17 languages'],
+    sceneAlt: 'Illustration: a car with a teddy bear in the back seat',
+    notifAlt:
+      'The reminder notification: “Check the back seat!” with the buttons “All good” and “Remind me in a minute”',
     howTitle: 'How it works',
     steps: [
       {
@@ -94,14 +101,30 @@ const en = {
         text: 'Detection is handled by Android itself — no persistent background service, minimal battery use.',
       },
       {
-        title: 'On time',
-        text: 'Uses exact alarms so the reminder arrives exactly when it should.',
+        title: 'Right on time',
+        text: 'Uses exact alarms, so the reminder arrives exactly when it should.',
       },
       {
-        title: 'Hebrew and English',
-        text: 'The app follows your phone’s language.',
+        title: 'Loud and clear',
+        text: 'Choose from 10 reminder sounds and set the volume. The reminder can play louder than the phone’s own volume.',
+      },
+      {
+        title: '17 languages',
+        text: 'The app follows your phone’s language, or you can pick one in Settings. Hebrew and Arabic read right to left.',
+      },
+      {
+        title: 'Free for everyone',
+        text: 'No ads, no sign-up and no in-app purchases.',
       },
     ],
+    screensTitle: 'A look inside',
+    screens: [
+      { image: 'home', caption: 'Monitoring status at a glance' },
+      { image: 'settings', caption: 'Choose your car and the delay' },
+      { image: 'sound', caption: 'Louder than the phone volume' },
+      { image: 'sounds', caption: '10 reminder sounds' },
+    ],
+    screenAlt: 'App screenshot:',
     permissionsTitle: 'Permissions and why they are needed',
     permissionsNote:
       'On some phones (e.g. Xiaomi, Huawei, Samsung) you may also need to allow “Autostart” or remove the app from “Sleeping apps”.',
@@ -130,7 +153,7 @@ const en = {
           [
             'The list of paired Bluetooth devices (device names and hardware addresses), shown so you can choose which device is your car.',
             'Bluetooth connection events: whether your phone has connected to or disconnected from the devices you selected.',
-            'App settings: whether monitoring is on, the reminder delay, and the hardware addresses of the devices you selected.',
+            'App settings: whether monitoring is on, the reminder delay, the hardware addresses of the devices you selected, the reminder sound and volume, the app language, and whether you accepted the safety notice.',
           ],
           'The app does not access your location, contacts, photos, files, microphone, camera or any other personal content.',
         ],
@@ -194,12 +217,14 @@ const en = {
     contact: `For any privacy question or request, contact ${DEVELOPER} at`,
   },
   footer: 'All rights reserved.',
+  contactDesigner: 'Email the designer',
 };
 
 const he: typeof en = {
   appName: 'אל תשכח אותי',
   nav: {
     home: 'דף הבית',
+    how: 'איך זה עובד',
     privacy: 'מדיניות פרטיות',
     source: 'קוד מקור',
     otherLang: 'English',
@@ -209,11 +234,17 @@ const he: typeof en = {
     title: 'אל תשכח אותי – תזכורת לבדוק את המושב האחורי',
     description:
       'אפליקציית אנדרואיד חינמית שמזכירה לך לבדוק את המושב האחורי כמה דקות אחרי שהטלפון מתנתק מהבלוטוס של הרכב.',
-    tagline: 'תזכורת לבדוק את המושב האחורי – בכל פעם שיוצאים מהרכב.',
+    eyebrow: 'אפליקציית אנדרואיד חינמית',
+    headline: 'לא שוכחים אף אחד ברכב',
+    tagline: 'תזכורת לבדוק את המושב האחורי, בכל פעם שיוצאים מהרכב.',
     intro:
-      'האפליקציה מזהה מתי הטלפון מתנתק מהבלוטוס של הרכב, ואחרי כמה דקות שואלת: "האם שכחת ילד באוטו?"',
+      'האפליקציה מזהה מתי הטלפון מתנתק מהבלוטוס של הרכב, ואחרי כמה דקות שואלת: "האם שכחת ילד ברכב?"',
     cta: 'בקרוב בחנות Google Play',
-    badges: 'חינם · ללא פרסומות · ללא הרשמה · אנדרואיד',
+    ctaSmall: 'בקרוב בחנות',
+    badges: ['חינם', 'ללא פרסומות', 'ללא הרשמה', '17 שפות'],
+    sceneAlt: 'איור: רכב ובמושב האחורי דובי',
+    notifAlt:
+      'התראת התזכורת: "בדוק את המושב האחורי!" עם הכפתורים "הכל בסדר" ו"הזכר לי שוב בעוד דקה"',
     howTitle: 'איך זה עובד',
     steps: [
       {
@@ -244,14 +275,30 @@ const he: typeof en = {
         text: 'הזיהוי מתבצע על ידי אנדרואיד עצמו – בלי שירות רקע קבוע ובצריכת סוללה מינימלית.',
       },
       {
-        title: 'בזמן',
-        text: 'שימוש בהתראות בזמן מדויק כדי שהתזכורת תגיע בדיוק מתי שצריך.',
+        title: 'בדיוק בזמן',
+        text: 'שימוש בהתראות בזמן מדויק, כדי שהתזכורת תגיע בדיוק מתי שצריך.',
       },
       {
-        title: 'עברית ואנגלית',
-        text: 'האפליקציה מוצגת בשפת הטלפון.',
+        title: 'חזקה וברורה',
+        text: 'אפשר לבחור מבין 10 צלילי תזכורת ולקבוע את העוצמה. התזכורת יכולה להישמע חזק יותר מעוצמת הטלפון.',
+      },
+      {
+        title: '17 שפות',
+        text: 'האפליקציה מוצגת בשפת הטלפון, ואפשר לבחור שפה אחרת בהגדרות. עברית וערבית מוצגות מימין לשמאל.',
+      },
+      {
+        title: 'חינם לכולם',
+        text: 'בלי פרסומות, בלי הרשמה ובלי רכישות בתוך האפליקציה.',
       },
     ],
+    screensTitle: 'הצצה לאפליקציה',
+    screens: [
+      { image: 'home', caption: 'מצב הניטור במבט אחד' },
+      { image: 'settings', caption: 'בחירת הרכב וזמן ההמתנה' },
+      { image: 'sound', caption: 'חזקה יותר מעוצמת הטלפון' },
+      { image: 'sounds', caption: '10 צלילי תזכורת' },
+    ],
+    screenAlt: 'צילום מסך מהאפליקציה:',
     permissionsTitle: 'הרשאות ולמה הן נחוצות',
     permissionsNote:
       'בחלק מהטלפונים (למשל שיאומי, וואווי, סמסונג) ייתכן שיהיה צורך לאפשר "הפעלה אוטומטית" או להוציא את האפליקציה מרשימת "אפליקציות במצב שינה".',
@@ -280,7 +327,7 @@ const he: typeof en = {
           [
             'רשימת מכשירי הבלוטוס המצומדים (שמות המכשירים וכתובות החומרה שלהם), המוצגת כדי שתוכל לבחור איזה מכשיר הוא הרכב.',
             'אירועי חיבור בלוטוס: האם הטלפון התחבר למכשירים שבחרת או התנתק מהם.',
-            'הגדרות האפליקציה: האם הניטור פעיל, זמן ההמתנה לתזכורת וכתובות החומרה של המכשירים שבחרת.',
+            'הגדרות האפליקציה: האם הניטור פעיל, זמן ההמתנה לתזכורת, כתובות החומרה של המכשירים שבחרת, צליל התזכורת ועוצמתו, שפת האפליקציה והאם אישרת את הודעת הבטיחות.',
           ],
           'האפליקציה אינה ניגשת למיקום, לאנשי קשר, לתמונות, לקבצים, למיקרופון, למצלמה או לכל תוכן אישי אחר.',
         ],
@@ -344,6 +391,7 @@ const he: typeof en = {
     contact: `לכל שאלה או בקשה בנושא פרטיות, ניתן לפנות אל ${DEVELOPER} בכתובת`,
   },
   footer: 'כל הזכויות שמורות.',
+  contactDesigner: 'שליחת מייל למעצב',
 };
 
 export const content: Record<Lang, typeof en> = { en, he };

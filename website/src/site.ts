@@ -4,7 +4,8 @@ export const PLAY_URL =
 export const SOURCE_URL = 'https://github.com/ym987/DontForgetMe';
 export const DEVELOPER = 'ymark987';
 export const CONTACT_EMAIL = 'ymark987@gmail.com';
-export const POLICY_UPDATED = new Date('2026-10-07T00:00:00Z');
+export const POLICY_UPDATED = new Date('2026-10-08T00:00:00Z');
+export const DESIGNER_EMAIL = 'm0527603401@gmail.com';
 
 export type Lang = 'en' | 'he';
 export type Page = 'home' | 'privacy';
