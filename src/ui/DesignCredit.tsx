@@ -6,9 +6,9 @@ import { Pressy } from './kit';
 
 const logo = require('../assets/images/credit-mm.png');
 const EMAIL = 'm0527603401@gmail.com';
-const CREDIT = 'Designed by MM';
+const CREDIT = 'Designed by';
 
-/** The designer's logo over "Designed by MM" (the same in every language); opens an email. */
+/** "Designed by" over the designer's logo (the same in every language); opens an email. */
 export function DesignCredit() {
   const { t } = useI18n();
   const theme = useTheme();
@@ -21,13 +21,9 @@ export function DesignCredit() {
       }
       scaleTo={0.94}
       accessibilityRole="link"
-      accessibilityLabel={`${CREDIT}. ${t.contactDesigner}`}
+      accessibilityLabel={`${CREDIT} MM. ${t.contactDesigner}`}
       style={styles.credit}
     >
-      {/* The logo is navy, so on the dark theme it sits on a light chip. */}
-      <View style={theme.dark && styles.logoChip}>
-        <Image source={logo} style={styles.logo} resizeMode="contain" />
-      </View>
       <Text
         style={[
           fontFor('en', 'medium').style,
@@ -37,6 +33,10 @@ export function DesignCredit() {
       >
         {CREDIT}
       </Text>
+      {/* The logo is navy, so on the dark theme it sits on a light chip. */}
+      <View style={theme.dark && styles.logoChip}>
+        <Image source={logo} style={styles.logo} resizeMode="contain" />
+      </View>
     </Pressy>
   );
 }
