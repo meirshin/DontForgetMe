@@ -76,6 +76,12 @@ export const ko: Strings = {
   overrideVolume: '휴대폰 음량보다 크게',
   overrideVolumeHint:
     '휴대폰이 무음으로 설정되어 있어도, 알림이 울리는 동안 휴대폰 알람 음량을 높여요.',
+  messageTitle: '알림 메시지',
+  messageHint:
+    '알림에 표시할 문구를 직접 입력하세요. 비워 두면 기본 메시지가 사용돼요.',
+  messageDefault:
+    '몇 분 전에 차에서 내리셨어요. 차 안에 아이를 두고 내리지 않으셨나요?',
+  messageReset: '기본 메시지로 되돌리기',
   done: '완료',
   languageTitle: '언어',
   languageAuto: '휴대폰 언어',

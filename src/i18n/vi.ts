@@ -79,6 +79,12 @@ export const vi: Strings = {
   overrideVolume: 'To hơn âm lượng điện thoại',
   overrideVolumeHint:
     'Tăng âm lượng báo thức của điện thoại trong khi phát lời nhắc, kể cả khi điện thoại đang ở chế độ im lặng.',
+  messageTitle: 'Nội dung nhắc nhở',
+  messageHint:
+    'Nội dung riêng của bạn cho thông báo nhắc nhở. Để trống để dùng nội dung mặc định.',
+  messageDefault:
+    'Bạn đã rời khỏi xe vài phút trước. Bạn có để quên trẻ nhỏ trên xe không?',
+  messageReset: 'Khôi phục mặc định',
   done: 'Xong',
   languageTitle: 'Ngôn ngữ',
   languageAuto: 'Ngôn ngữ của điện thoại',

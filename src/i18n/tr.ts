@@ -79,6 +79,12 @@ export const tr: Strings = {
   overrideVolume: 'Telefonun ses düzeyinden daha yüksek',
   overrideVolumeHint:
     'Hatırlatma çalarken, telefon sessiz modda olsa bile telefonun alarm ses düzeyini yükseltir.',
+  messageTitle: 'Hatırlatma mesajı',
+  messageHint:
+    'Hatırlatma bildirimi için kendi metniniz. Varsayılan mesajı kullanmak için boş bırakın.',
+  messageDefault:
+    'Birkaç dakika önce araçtan indiniz. Araçta çocuk unuttunuz mu?',
+  messageReset: 'Varsayılana dön',
   done: 'Bitti',
   languageTitle: 'Dil',
   languageAuto: 'Telefonun dili',

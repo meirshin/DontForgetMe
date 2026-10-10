@@ -30,6 +30,7 @@ jest.mock('../specs/NativeCarBluetooth', () => ({
         sound: 'chimes',
         volume: 90,
         overrideVolume: true,
+        message: '',
       }),
     getSystemStatus: () =>
       Promise.resolve({ exactAlarms: true, batteryUnrestricted: true }),
@@ -43,6 +44,7 @@ jest.mock('../specs/NativeCarBluetooth', () => ({
     setSound: jest.fn(),
     setVolume: jest.fn(),
     setOverrideVolume: jest.fn(),
+    setMessage: jest.fn(),
     previewSound: jest.fn(),
     stopSound: jest.fn(),
   },
@@ -138,6 +140,29 @@ test('sound settings are saved together with the other settings', async () => {
   expect(native.setSound).toHaveBeenCalledWith('chimes');
   expect(native.setVolume).toHaveBeenCalledWith(90);
   expect(native.setOverrideVolume).toHaveBeenCalledWith(false);
+});
+
+test('the reminder message can be customized and restored', async () => {
+  const native = require('../specs/NativeCarBluetooth').default;
+  const { press, find, root } = await renderApp();
+
+  await press('openSettings');
+  expect(find('message').props.placeholder).toBe(
+    'You left the car a few minutes ago. Did you forget a child in the car?',
+  );
+  await ReactTestRenderer.act(() => {
+    find('message').props.onChangeText('  Take the groceries  ');
+  });
+  expect(find('save').props.disabled).toBe(false);
+  await press('save');
+  expect(native.setMessage).toHaveBeenCalledWith('Take the groceries');
+
+  // Back to the default: the field is emptied and saving stores ''.
+  await press('resetMessage');
+  expect(find('message').props.value).toBe('');
+  expect(root.findAllByProps({ testID: 'resetMessage' })).toHaveLength(0);
+  await press('save');
+  expect(native.setMessage).toHaveBeenLastCalledWith('');
 });
 
 test('switching the language applies at once, right-to-left for Hebrew', async () => {

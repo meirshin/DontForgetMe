@@ -82,6 +82,12 @@ export const es: Strings = {
   overrideVolume: 'Más alto que el volumen del teléfono',
   overrideVolumeHint:
     'Sube el volumen de alarma mientras suena el recordatorio, incluso si el teléfono está en modo silencio.',
+  messageTitle: 'Mensaje del recordatorio',
+  messageHint:
+    'Tu propio texto para la notificación del recordatorio. Déjalo vacío para usar el mensaje predeterminado.',
+  messageDefault:
+    'Saliste del vehículo hace unos minutos. ¿Olvidaste a un niño dentro?',
+  messageReset: 'Restaurar predeterminado',
   done: 'Listo',
   languageTitle: 'Idioma',
   languageAuto: 'Idioma del teléfono',

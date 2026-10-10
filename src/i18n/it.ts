@@ -83,6 +83,12 @@ export const it: Strings = {
   overrideVolume: 'Più forte del volume del telefono',
   overrideVolumeHint:
     'Alza il volume della sveglia mentre suona il promemoria, anche se il telefono è in modalità silenziosa.',
+  messageTitle: 'Messaggio del promemoria',
+  messageHint:
+    'Il tuo testo per la notifica del promemoria. Lascia vuoto per usare il messaggio predefinito.',
+  messageDefault:
+    'Hai lasciato l’auto qualche minuto fa. Hai dimenticato un bambino a bordo?',
+  messageReset: 'Ripristina predefinito',
   done: 'Fine',
   languageTitle: 'Lingua',
   languageAuto: 'Lingua del telefono',

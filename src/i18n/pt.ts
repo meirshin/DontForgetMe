@@ -83,6 +83,12 @@ export const pt: Strings = {
   overrideVolume: 'Mais alto que o volume do celular',
   overrideVolumeHint:
     'Aumenta o volume do alarme enquanto o lembrete toca, mesmo com o celular no modo silencioso.',
+  messageTitle: 'Mensagem do lembrete',
+  messageHint:
+    'Seu próprio texto para a notificação do lembrete. Deixe em branco para usar a mensagem padrão.',
+  messageDefault:
+    'Você saiu do carro há alguns minutos. Esqueceu uma criança lá dentro?',
+  messageReset: 'Restaurar padrão',
   done: 'Concluído',
   languageTitle: 'Idioma',
   languageAuto: 'Idioma do celular',

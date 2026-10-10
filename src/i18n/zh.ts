@@ -75,6 +75,12 @@ export const zh: Strings = {
   overrideVolume: '高于手机音量',
   overrideVolumeHint:
     '提醒响起时调高手机的闹钟音量，即使手机已设为静音也同样有效。',
+  messageTitle: '提醒内容',
+  messageHint:
+    '为提醒通知填写你自己的文字。留空则使用默认内容。',
+  messageDefault:
+    '您几分钟前已离开汽车。是否把孩子忘在车里了？',
+  messageReset: '恢复默认',
   done: '完成',
   languageTitle: '语言',
   languageAuto: '跟随系统',

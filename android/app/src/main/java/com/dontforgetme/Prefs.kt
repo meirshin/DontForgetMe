@@ -12,6 +12,7 @@ object Prefs {
   private const val KEY_VOLUME = "volume"
   private const val KEY_OVERRIDE_VOLUME = "override_volume"
   private const val KEY_LANGUAGE = "language"
+  private const val KEY_MESSAGE = "message"
   private const val KEY_DISCLAIMER = "disclaimer_accepted_v1"
 
   const val DEFAULT_DELAY_MINUTES = 2
@@ -21,6 +22,8 @@ object Prefs {
   const val DEFAULT_VOLUME = 90
   const val MIN_VOLUME = 10
   const val MAX_VOLUME = 100
+
+  const val MAX_MESSAGE_LENGTH = 200
 
   private fun prefs(c: Context) = c.getSharedPreferences(FILE, Context.MODE_PRIVATE)
 
@@ -65,6 +68,12 @@ object Prefs {
 
   fun setLanguage(c: Context, value: String) =
       prefs(c).edit().putString(KEY_LANGUAGE, value).apply()
+
+  /** The user's own reminder text, or "" for the default message. */
+  fun message(c: Context): String = prefs(c).getString(KEY_MESSAGE, "") ?: ""
+
+  fun setMessage(c: Context, value: String) =
+      prefs(c).edit().putString(KEY_MESSAGE, value.trim().take(MAX_MESSAGE_LENGTH)).apply()
 
   /** The safety notice and terms of use were accepted (bump the key's version when they change). */
   fun disclaimerAccepted(c: Context): Boolean = prefs(c).getBoolean(KEY_DISCLAIMER, false)

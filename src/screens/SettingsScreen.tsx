@@ -4,9 +4,11 @@ import {
   BackHandler,
   Easing,
   Image,
+  Keyboard,
   Linking,
   ScrollView,
   StyleSheet,
+  TextInput,
   View,
 } from 'react-native';
 import {
@@ -18,7 +20,7 @@ import NativeCarBluetooth, {
   type PairedDevice,
 } from '../../specs/NativeCarBluetooth';
 import { useI18n } from '../i18n';
-import { radius, useTheme } from '../theme';
+import { fontFor, radius, useTheme } from '../theme';
 import { ConfirmSheet } from '../ui/ConfirmSheet';
 import { DesignCredit } from '../ui/DesignCredit';
 import { Icon, IconName } from '../ui/Icon';
@@ -47,6 +49,8 @@ const MAX_VOLUME = 100;
 /** Sounds are ~7 s long; previews from the volume slider are shorter. */
 const PREVIEW_MS = 7500;
 const SHORT_PREVIEW_MS = 2500;
+/** Same limit as Prefs.MAX_MESSAGE_LENGTH. */
+const MAX_MESSAGE_LENGTH = 200;
 
 const testBanner = require('../assets/images/test-banner.jpg');
 // Seamless 8 s loop of test-banner.jpg, generated with Veo (see scripts/brand/README.md).
@@ -58,6 +62,8 @@ export type SettingsDraft = {
   sound: string;
   volume: number;
   overrideVolume: boolean;
+  /** The user's own reminder text, or '' for the default message. */
+  message: string;
 };
 
 type SettingsProps = {
@@ -89,12 +95,27 @@ export function SettingsScreen({
   const [sound, setSound] = useState(settings.sound);
   const [volume, setVolume] = useState(settings.volume);
   const [overrideVolume, setOverrideVolume] = useState(settings.overrideVolume);
+  const [message, setMessage] = useState(settings.message);
   const [confirmLeave, setConfirmLeave] = useState(false);
   const [sheet, setSheet] = useState<'sound' | 'language' | 'terms' | null>(
     null,
   );
   const [playing, setPlaying] = useState<string | null>(null);
   const previewTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const scroll = useRef<React.ComponentRef<typeof ScrollView>>(null);
+  const messageY = useRef(0);
+  const messageFocused = useRef(false);
+
+  // Android doesn't scroll a focused field above the keyboard, so bring the
+  // message card into view when the keyboard opens for it.
+  useEffect(() => {
+    const sub = Keyboard.addListener('keyboardDidShow', () => {
+      if (messageFocused.current) {
+        scroll.current?.scrollTo({ y: Math.max(0, messageY.current - 12) });
+      }
+    });
+    return () => sub.remove();
+  }, []);
 
   const saved = settings.selectedDevices;
   const selected = [
@@ -106,7 +127,8 @@ export function SettingsScreen({
     toggled.length > 0 ||
     sound !== settings.sound ||
     volume !== settings.volume ||
-    overrideVolume !== settings.overrideVolume;
+    overrideVolume !== settings.overrideVolume ||
+    message.trim() !== settings.message;
 
   const changeDelay = (diff: number) => {
     setDelay(Math.min(MAX_DELAY, Math.max(MIN_DELAY, delay + diff)));
@@ -154,8 +176,10 @@ export function SettingsScreen({
       sound,
       volume,
       overrideVolume,
+      message: message.trim(),
     });
     setToggled([]);
+    setMessage(message.trim());
   };
 
   const goBack = () => {
@@ -196,6 +220,7 @@ export function SettingsScreen({
       {/* Keyed by language: after a live language switch Android keeps stale
           text and layout in rows that were off screen, so remount the content. */}
       <ScrollView
+        ref={scroll}
         key={lang}
         contentContainerStyle={[
           styles.content,
@@ -375,6 +400,68 @@ export function SettingsScreen({
                 accessibilityLabel={t.overrideVolume}
               />
             </View>
+          </Card>
+        </FadeIn>
+
+        <FadeIn
+          delay={175}
+          onLayout={e => {
+            messageY.current = e.nativeEvent.layout.y;
+          }}
+        >
+          <Card>
+            <View style={styles.cardHeader}>
+              <IconChip
+                name="notifications"
+                color={theme.primary}
+                background={theme.primarySoft}
+              />
+              <Txt variant="headline" style={styles.flex}>
+                {t.messageTitle}
+              </Txt>
+            </View>
+            <TextInput
+              testID="message"
+              value={message}
+              onChangeText={setMessage}
+              onFocus={() => {
+                messageFocused.current = true;
+              }}
+              onBlur={() => {
+                messageFocused.current = false;
+              }}
+              placeholder={t.messageDefault}
+              placeholderTextColor={theme.textFaint}
+              maxLength={MAX_MESSAGE_LENGTH}
+              multiline
+              accessibilityLabel={t.messageTitle}
+              style={[
+                styles.messageInput,
+                fontFor(lang, 'regular').style,
+                {
+                  color: theme.text,
+                  backgroundColor: theme.surfaceAlt,
+                  textAlign: rtl ? 'right' : 'left',
+                },
+              ]}
+            />
+            <Txt variant="caption" color={theme.textMuted}>
+              {t.messageHint}
+            </Txt>
+            {message.length > 0 && (
+              <Pressy
+                testID="resetMessage"
+                onPress={() => setMessage('')}
+                scaleTo={0.95}
+                accessibilityRole="button"
+                style={styles.resetMessage}
+              >
+                <Icon name="refresh" size={18} color={theme.primary} />
+                <Txt variant="bodyStrong" color={theme.primary}>
+                  {t.messageReset}
+                </Txt>
+              </Pressy>
+            )}
           </Card>
         </FadeIn>
 
@@ -764,6 +851,22 @@ const styles = StyleSheet.create({
     marginBottom: -8,
   },
   overrideRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+  messageInput: {
+    minHeight: 84,
+    borderRadius: radius.md,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    fontSize: 16,
+    lineHeight: 22,
+    textAlignVertical: 'top',
+  },
+  resetMessage: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'flex-start',
+    gap: 6,
+    paddingVertical: 4,
+  },
   testCard: { padding: 0, overflow: 'hidden', gap: 0 },
   banner: { width: '100%', aspectRatio: 2 },
   bannerImage: { ...StyleSheet.absoluteFill, width: '100%', height: '100%' },

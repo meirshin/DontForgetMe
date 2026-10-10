@@ -80,6 +80,12 @@ export const en = {
   overrideVolumeHint:
     "Raises the phone's alarm volume while the reminder plays, even if the phone is set to quiet.",
   done: 'Done',
+  messageTitle: 'Reminder message',
+  messageHint:
+    'Your own text for the reminder notification. Leave it empty to use the default message.',
+  messageDefault:
+    'You left the car a few minutes ago. Did you forget a child in the car?',
+  messageReset: 'Restore default',
   languageTitle: 'Language',
   languageAuto: 'Phone language',
   testTitle: 'Test the reminder',

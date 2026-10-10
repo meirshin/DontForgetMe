@@ -191,6 +191,7 @@ function Main() {
     NativeCarBluetooth.setSound(draft.sound);
     NativeCarBluetooth.setVolume(draft.volume);
     NativeCarBluetooth.setOverrideVolume(draft.overrideVolume);
+    NativeCarBluetooth.setMessage(draft.message);
     setSettings({ ...settings, ...draft });
     notify(t.saved, 'check_circle');
   };

@@ -79,6 +79,12 @@ export const id: Strings = {
   overrideVolume: 'Lebih keras dari volume ponsel',
   overrideVolumeHint:
     'Menaikkan volume alarm ponsel saat pengingat berbunyi, meskipun ponsel dalam mode senyap.',
+  messageTitle: 'Pesan pengingat',
+  messageHint:
+    'Teks Anda sendiri untuk notifikasi pengingat. Biarkan kosong untuk memakai pesan bawaan.',
+  messageDefault:
+    'Anda keluar dari mobil beberapa menit yang lalu. Apakah ada anak yang tertinggal di dalam mobil?',
+  messageReset: 'Kembalikan bawaan',
   done: 'Selesai',
   languageTitle: 'Bahasa',
   languageAuto: 'Bahasa ponsel',

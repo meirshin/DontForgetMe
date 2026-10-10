@@ -56,6 +56,7 @@ class CarBluetoothModule(reactContext: ReactApplicationContext) :
           putString("sound", Prefs.sound(ctx))
           putInt("volume", Prefs.volume(ctx))
           putBoolean("overrideVolume", Prefs.overrideVolume(ctx))
+          putString("message", Prefs.message(ctx))
         })
   }
 
@@ -79,6 +80,8 @@ class CarBluetoothModule(reactContext: ReactApplicationContext) :
   override fun setVolume(volume: Double) = Prefs.setVolume(ctx, volume.toInt())
 
   override fun setOverrideVolume(enabled: Boolean) = Prefs.setOverrideVolume(ctx, enabled)
+
+  override fun setMessage(message: String) = Prefs.setMessage(ctx, message)
 
   override fun previewSound(sound: String, volume: Double, overrideVolume: Boolean) =
       AlertSound.play(ctx, sound, volume.toInt(), overrideVolume)

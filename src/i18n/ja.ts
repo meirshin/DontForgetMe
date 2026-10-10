@@ -79,6 +79,12 @@ export const ja: Strings = {
   overrideVolume: 'スマホの音量より大きく鳴らす',
   overrideVolumeHint:
     'リマインダーが鳴っている間、スマホがマナーモードでもアラームの音量を上げます。',
+  messageTitle: 'リマインダーのメッセージ',
+  messageHint:
+    'リマインダー通知に表示する文章を自由に設定できます。空欄にするとデフォルトのメッセージが使われます。',
+  messageDefault:
+    '数分前に車を離れました。車内にお子さまを残していませんか？',
+  messageReset: 'デフォルトに戻す',
   done: '完了',
   languageTitle: '言語',
   languageAuto: 'スマホの言語',

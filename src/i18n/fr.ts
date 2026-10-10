@@ -87,6 +87,12 @@ export const fr: Strings = {
   overrideVolume: 'Plus fort que le volume du téléphone',
   overrideVolumeHint:
     'Augmente le volume des alarmes pendant le rappel, même si le téléphone est en mode silencieux.',
+  messageTitle: 'Message du rappel',
+  messageHint:
+    'Votre propre texte pour la notification de rappel. Laissez le champ vide pour utiliser le message par défaut.',
+  messageDefault:
+    'Vous avez quitté la voiture il y a quelques minutes. Avez-vous oublié un enfant à bord&#160;?',
+  messageReset: 'Rétablir le message par défaut',
   done: 'OK',
   languageTitle: 'Langue',
   languageAuto: 'Langue du téléphone',

@@ -78,6 +78,12 @@ export const he: Strings = {
   overrideVolume: 'חזק יותר מעוצמת הטלפון',
   overrideVolumeHint:
     'מגביר את עוצמת השעון המעורר בזמן התזכורת, גם אם הטלפון מכוון לשקט.',
+  messageTitle: 'הודעת התזכורת',
+  messageHint:
+    'טקסט משלך להתראת התזכורת. השאר ריק כדי להשתמש בהודעה הרגילה.',
+  messageDefault:
+    'יצאת מהרכב לפני כמה דקות. האם שכחת ילד ברכב?',
+  messageReset: 'חזרה להודעה הרגילה',
   done: 'סיום',
   languageTitle: 'שפה',
   languageAuto: 'שפת הטלפון',

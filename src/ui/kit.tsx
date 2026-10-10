@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import {
   Animated,
   Easing,
+  LayoutChangeEvent,
   Pressable,
   PressableProps,
   StyleProp,
@@ -305,10 +306,12 @@ export function IconButton({
 export function FadeIn({
   delay = 0,
   style,
+  onLayout,
   children,
 }: {
   delay?: number;
   style?: StyleProp<ViewStyle>;
+  onLayout?: (e: LayoutChangeEvent) => void;
   children: React.ReactNode;
 }) {
   const v = useRef(new Animated.Value(0)).current;
@@ -326,7 +329,10 @@ export function FadeIn({
     outputRange: [22, 0],
   });
   return (
-    <Animated.View style={[style, { opacity: v, transform: [{ translateY }] }]}>
+    <Animated.View
+      onLayout={onLayout}
+      style={[style, { opacity: v, transform: [{ translateY }] }]}
+    >
       {children}
     </Animated.View>
   );

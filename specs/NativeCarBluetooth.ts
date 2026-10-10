@@ -17,6 +17,8 @@ export type MonitorSettings = {
   volume: number;
   /** Raise the phone's alarm volume while the reminder plays. */
   overrideVolume: boolean;
+  /** The user's own reminder text, or '' for the default message. */
+  message: string;
 };
 
 export type SystemStatus = {
@@ -33,6 +35,7 @@ export interface Spec extends TurboModule {
   setSound(sound: string): void;
   setVolume(volume: number): void;
   setOverrideVolume(enabled: boolean): void;
+  setMessage(message: string): void;
   previewSound(sound: string, volume: number, overrideVolume: boolean): void;
   stopSound(): void;
   getSystemStatus(): Promise<SystemStatus>;

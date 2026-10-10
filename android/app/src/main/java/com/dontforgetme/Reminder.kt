@@ -126,14 +126,16 @@ object Reminder {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
         )
 
+    val text = Prefs.message(app).ifBlank { c.getString(R.string.reminder_text) }
+
     @Suppress("DEPRECATION")
     val notification =
         NotificationCompat.Builder(c, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_notification)
             .setColor(ContextCompat.getColor(c, R.color.notification_accent))
             .setContentTitle(c.getString(R.string.reminder_title))
-            .setContentText(c.getString(R.string.reminder_text))
-            .setStyle(NotificationCompat.BigTextStyle().bigText(c.getString(R.string.reminder_text)))
+            .setContentText(text)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(text))
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)

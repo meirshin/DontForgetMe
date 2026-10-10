@@ -83,6 +83,12 @@ export const de: Strings = {
   overrideVolume: 'Lauter als die Handy-Lautstärke',
   overrideVolumeHint:
     'Erhöht während der Erinnerung die Weckerlautstärke des Handys, auch wenn es auf lautlos gestellt ist.',
+  messageTitle: 'Erinnerungstext',
+  messageHint:
+    'Dein eigener Text für die Erinnerungsbenachrichtigung. Lass das Feld leer, um den Standardtext zu verwenden.',
+  messageDefault:
+    'Du hast das Auto vor ein paar Minuten verlassen. Hast du ein Kind im Auto vergessen?',
+  messageReset: 'Standard wiederherstellen',
   done: 'Fertig',
   languageTitle: 'Sprache',
   languageAuto: 'Sprache des Handys',
