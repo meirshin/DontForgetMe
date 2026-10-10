@@ -193,7 +193,10 @@ export function SettingsScreen({
         </Txt>
       </View>
 
+      {/* Keyed by language: after a live language switch Android keeps stale
+          text and layout in rows that were off screen, so remount the content. */}
       <ScrollView
+        key={lang}
         contentContainerStyle={[
           styles.content,
           { paddingBottom: 170 + insets.bottom },

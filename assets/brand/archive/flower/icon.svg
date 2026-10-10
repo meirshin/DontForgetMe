@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bgl" x1="0.3" y1="0" x2="0.7" y2="1">
+      <stop offset="0" stop-color="#0B0E3A"/>
+      <stop offset="0.55" stop-color="#2A31A6"/>
+      <stop offset="1" stop-color="#7183FF"/>
+    </linearGradient>
+    <radialGradient id="bgg" cx="0.5" cy="0.5" r="0.45">
+      <stop offset="0" stop-color="#9FB0FF" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#9FB0FF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" fill="url(#bgl)"/>
+  <rect width="512" height="512" fill="url(#bgg)"/>
+  <defs>
+    <linearGradient id="fp0" gradientUnits="userSpaceOnUse" x1="256" y1="256" x2="256" y2="90">
+      <stop offset="0.3" stop-color="#D9DFFF"/>
+      <stop offset="0.8" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <linearGradient id="fp1" gradientUnits="userSpaceOnUse" x1="256" y1="256" x2="413.875" y2="204.703">
+      <stop offset="0.3" stop-color="#D9DFFF"/>
+      <stop offset="0.8" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <linearGradient id="fp2" gradientUnits="userSpaceOnUse" x1="256" y1="256" x2="353.572" y2="390.297">
+      <stop offset="0.3" stop-color="#D9DFFF"/>
+      <stop offset="0.8" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <linearGradient id="fp3" gradientUnits="userSpaceOnUse" x1="256" y1="256" x2="158.428" y2="390.297">
+      <stop offset="0.3" stop-color="#D9DFFF"/>
+      <stop offset="0.8" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <linearGradient id="fp4" gradientUnits="userSpaceOnUse" x1="256" y1="256" x2="98.125" y2="204.703">
+      <stop offset="0.3" stop-color="#D9DFFF"/>
+      <stop offset="0.8" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <radialGradient id="fc" cx="256" cy="242.554" r="58.266000000000005" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFE49A"/>
+      <stop offset="1" stop-color="#FFB938"/>
+    </radialGradient>
+    <radialGradient id="fci" cx="256" cy="264.964" r="26.892" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F08A1C"/>
+      <stop offset="1" stop-color="#FFB938"/>
+    </radialGradient>
+    <mask id="fm" maskUnits="userSpaceOnUse" x="7" y="7" width="498" height="498">
+      <rect x="7" y="7" width="498" height="498" fill="#fff"/>
+      <circle cx="256" cy="256" r="56.44" fill="#000"/>
+    </mask>
+    <filter id="fs" filterUnits="userSpaceOnUse" x="7" y="7" width="498" height="498">
+      <feDropShadow dx="0" dy="8.3" stdDeviation="9.959999999999999" flood-color="#0B0E3A" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+  <g mask="url(#fm)">
+    <g filter="url(#fs)">
+      <path d="M256,256 C243.716,239.4 194.58,189.6 194.58,143.12 C194.58,106.6 214.234,90 226.518,90 C241.259,90 251.086,103.28 256,123.2 C260.914,103.28 270.741,90 285.482,90 C297.766,90 317.42,106.6 317.42,143.12 C317.42,189.6 268.284,239.4 256,256 Z" fill="url(#fp0)"/>
+      <path d="M256,256 C267.992,239.188 300.17,177.067 344.375,162.704 C379.108,151.419 400.969,164.982 404.765,176.665 C409.32,190.684 399.727,204.134 382.3,214.963 C402.764,213.48 418.431,218.723 422.986,232.742 C426.782,244.425 417.068,268.247 382.335,279.532 C338.13,293.895 275.584,262.553 256,256 Z" fill="url(#fp1)"/>
+      <path d="M256,256 C275.695,262.209 344.719,273.617 372.039,311.22 C393.505,340.765 387.361,365.748 377.423,372.968 C365.498,381.632 349.742,376.665 334.058,363.437 C341.791,382.441 341.647,398.961 329.721,407.626 C319.783,414.846 294.125,412.969 272.659,383.424 C245.339,345.82 255.819,276.65 256,256 Z" fill="url(#fp2)"/>
+      <path d="M256,256 C256.181,276.65 266.661,345.82 239.341,383.424 C217.875,412.969 192.217,414.846 182.279,407.626 C170.353,398.961 170.209,382.441 177.942,363.437 C162.258,376.665 146.502,381.632 134.577,372.968 C124.639,365.748 118.495,340.765 139.961,311.22 C167.281,273.617 236.305,262.209 256,256 Z" fill="url(#fp3)"/>
+      <path d="M256,256 C236.416,262.553 173.87,293.895 129.665,279.532 C94.932,268.247 85.218,244.425 89.014,232.742 C93.569,218.723 109.236,213.48 129.7,214.963 C112.273,204.134 102.68,190.684 107.235,176.665 C111.031,164.982 132.892,151.419 167.625,162.704 C211.83,177.067 244.008,239.188 256,256 Z" fill="url(#fp4)"/>
+    </g>
+  </g>
+  <circle cx="256" cy="256" r="44.82" fill="url(#fc)"/>
+  <circle cx="256" cy="256" r="21.5136" fill="url(#fci)"/>
+</svg>

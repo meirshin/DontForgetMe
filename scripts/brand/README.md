@@ -1,8 +1,12 @@
 # Brand assets
 
-The logo is a forget-me-not flower (the flower literally named "forget me not")
-whose five petals are hearts, around a golden center, on a night-indigo
-background.
+The logo is a small white car with a golden heart glowing in its back window
+(someone precious in the back seat), on a night-indigo background. The
+monochrome versions (themed launcher icon, status bar icon) keep the windows cut
+out and the heart filled, so the mark reads at 24dp.
+
+The previous mark, a forget-me-not flower, is kept in `assets/brand/archive/flower`
+and in the git tag `brand-flower-v1`.
 
 ## Logo, icons and store graphics
 

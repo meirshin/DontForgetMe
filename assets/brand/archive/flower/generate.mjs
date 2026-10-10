@@ -13,7 +13,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { car, circlePath, holePath, palette as c } from './geometry.mjs';
+import { circlePath, flower, holePath, palette as c } from './geometry.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const res = path.join(root, 'android/app/src/main/res');
@@ -26,64 +26,44 @@ const out = (...p) => {
 // ---------------------------------------------------------------------------
 // SVG
 
-const r1 = n => Math.round(n * 1000) / 1000;
-
-/** The full-color car mark centered at (cx, cy), `width` wide. */
-function carSvg(cx, cy, width, { id = 'car', shadow = true } = {}) {
-  const k = car(cx, cy, width);
-  const s = k.scale;
-  const h = k.heartCenter;
-  const box = `x="${cx - width}" y="${cy - width}" width="${width * 2}" height="${width * 2}"`;
-  const groundY = k.wheels[0].cy + k.wheels[0].r;
+function flowerSvg(cx, cy, radius, { id = 'f', shadow = true, widthRatio, gap = true } = {}) {
+  const f = flower(cx, cy, radius, widthRatio);
+  const grads = f.petals
+    .map(
+      (p, i) => `
+    <linearGradient id="${id}p${i}" gradientUnits="userSpaceOnUse" x1="${p.axis.x1}" y1="${p.axis.y1}" x2="${p.axis.x2}" y2="${p.axis.y2}">
+      <stop offset="0.3" stop-color="${c.petalInner}"/>
+      <stop offset="0.8" stop-color="${c.petalOuter}"/>
+    </linearGradient>`,
+    )
+    .join('');
+  const { cx: x, cy: y, r } = f.center;
+  const box = `x="${cx - radius * 1.5}" y="${cy - radius * 1.5}" width="${radius * 3}" height="${radius * 3}"`;
   return `
-  <defs>
-    <linearGradient id="${id}b" gradientUnits="userSpaceOnUse" x1="0" y1="${k.bodyTop}" x2="0" y2="${k.bodyBottom}">
-      <stop offset="0" stop-color="${c.bodyTop}"/>
-      <stop offset="1" stop-color="${c.bodyBottom}"/>
-    </linearGradient>
-    <linearGradient id="${id}g" gradientUnits="userSpaceOnUse" x1="0" y1="${k.bodyTop}" x2="0" y2="${k.bodyTop + 26 * s}">
-      <stop offset="0" stop-color="${c.glass}"/>
-      <stop offset="1" stop-color="${c.night}"/>
-    </linearGradient>
-    <radialGradient id="${id}w" gradientUnits="userSpaceOnUse" cx="${h.x}" cy="${h.y}" r="${h.size * 1.35}">
-      <stop offset="0" stop-color="${c.gold}" stop-opacity="0.75"/>
-      <stop offset="1" stop-color="${c.gold}" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="${id}h" gradientUnits="userSpaceOnUse" x1="0" y1="${h.y - h.size / 2}" x2="0" y2="${h.y + h.size / 2}">
+  <defs>${grads}
+    <radialGradient id="${id}c" cx="${x}" cy="${y - r * 0.3}" r="${r * 1.3}" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="${c.goldLight}"/>
       <stop offset="1" stop-color="${c.gold}"/>
-    </linearGradient>
-    <radialGradient id="${id}u" gradientUnits="userSpaceOnUse" cx="${k.wheels[0].cx}" cy="${k.wheels[0].cy}" r="${k.wheels[0].hub}">
-      <stop offset="0" stop-color="${c.bodyTop}"/>
-      <stop offset="1" stop-color="${c.glow}"/>
     </radialGradient>
-    <clipPath id="${id}rc"><path d="${k.rearWindow}"/></clipPath>
+    <radialGradient id="${id}ci" cx="${x}" cy="${y + r * 0.2}" r="${r * 0.6}" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="${c.goldDeep}"/>
+      <stop offset="1" stop-color="${c.gold}"/>
+    </radialGradient>
     <mask id="${id}m" maskUnits="userSpaceOnUse" ${box}>
       <rect ${box} fill="#fff"/>
-      ${k.wheels.map(w => `<circle cx="${w.cx}" cy="${w.cy}" r="${w.arch}" fill="#000"/>`).join('')}
+      <circle cx="${x}" cy="${y}" r="${f.gapR}" fill="#000"/>
     </mask>
     <filter id="${id}s" filterUnits="userSpaceOnUse" ${box}>
-      <feDropShadow dx="0" dy="${width * 0.02}" stdDeviation="${width * 0.025}" flood-color="${c.night}" flood-opacity="0.45"/>
+      <feDropShadow dx="0" dy="${radius * 0.05}" stdDeviation="${radius * 0.06}" flood-color="${c.night}" flood-opacity="0.45"/>
     </filter>
-    <filter id="${id}f" filterUnits="userSpaceOnUse" ${box}>
-      <feGaussianBlur stdDeviation="${width * 0.02}"/>
-    </filter>
-  </defs>${shadow ? `
-  <ellipse cx="${cx}" cy="${groundY}" rx="${width * 0.46}" ry="${width * 0.035}" fill="${c.night}" opacity="0.5" filter="url(#${id}f)"/>` : ''}
-  <g mask="url(#${id}m)">
-    <path d="${k.body}" fill="url(#${id}b)"${shadow ? ` filter="url(#${id}s)"` : ''}/>
+  </defs>
+  <g${gap ? ` mask="url(#${id}m)"` : ''}>
+    <g${shadow ? ` filter="url(#${id}s)"` : ''}>
+      ${f.petals.map((p, i) => `<path d="${p.d}" fill="url(#${id}p${i})"/>`).join('\n      ')}
+    </g>
   </g>
-  <path d="${k.rearWindow}" fill="url(#${id}g)"/>
-  <path d="${k.frontWindow}" fill="url(#${id}g)"/>
-  <g clip-path="url(#${id}rc)"><circle cx="${h.x}" cy="${h.y}" r="${h.size * 1.35}" fill="url(#${id}w)"/></g>
-  <path d="${k.heart}" fill="url(#${id}h)"/>
-  <ellipse cx="${k.headlight.cx}" cy="${k.headlight.cy}" rx="${k.headlight.rx}" ry="${k.headlight.ry}" fill="${c.goldLight}"/>
-  ${k.wheels
-    .map(
-      (w, i) => `<circle cx="${w.cx}" cy="${w.cy}" r="${w.r}" fill="${c.night}" stroke="${c.glow}" stroke-opacity="0.45" stroke-width="${r1(1.4 * s)}"/>
-  <circle cx="${w.cx}" cy="${w.cy}" r="${w.hub}" fill="${i ? c.glow : `url(#${id}u)`}"/>`,
-    )
-    .join('\n  ')}`;
+  <circle cx="${x}" cy="${y}" r="${r}" fill="url(#${id}c)"/>
+  <circle cx="${x}" cy="${y}" r="${r * 0.48}" fill="url(#${id}ci)"/>`;
 }
 
 function backgroundSvg(size, id = 'bg') {
@@ -108,10 +88,10 @@ const svg = (w, h, body) =>
   `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">${body}\n</svg>\n`;
 
 /** Logo mark only, transparent background. */
-const logoSvg = svg(512, 512, carSvg(256, 256, 470));
+const logoSvg = svg(512, 512, flowerSvg(256, 256, 218));
 
 /** Full-bleed square icon (Play Store, website). */
-const iconSvg = svg(512, 512, backgroundSvg(512) + carSvg(256, 262, 340));
+const iconSvg = svg(512, 512, backgroundSvg(512) + flowerSvg(256, 256, 166));
 
 /** Legacy launcher icon (API < 26): rounded square or circle with the artwork. */
 function legacySvg(round) {
@@ -124,12 +104,12 @@ function legacySvg(round) {
     s,
     s,
     `<defs><clipPath id="clip">${shape}</clipPath></defs>
-  <g clip-path="url(#clip)">${backgroundSvg(s)}${carSvg(s / 2, s * 0.51, s * 0.68)}</g>`,
+  <g clip-path="url(#clip)">${backgroundSvg(s)}${flowerSvg(s / 2, s / 2, s * 0.3)}</g>`,
   );
 }
 
 /** Adaptive icon foreground: 108dp canvas, artwork inside the 66dp safe zone. */
-const foregroundSvg = svg(108, 108, carSvg(54, 55, 62));
+const foregroundSvg = svg(108, 108, flowerSvg(54, 54, 29));
 
 // ---------------------------------------------------------------------------
 // Android vector drawables
@@ -164,12 +144,10 @@ const vectorBackground = `<?xml version="1.0" encoding="utf-8"?>
 </vector>
 `;
 
-/** Single-color car: windows cut out, the heart and the wheels (with hubs) filled. */
-function monoVector(size, width, color, comment) {
-  const k = car(size / 2, size / 2, width);
+/** Single-color flower, center separated from the petals by a ring. */
+function monoVector(size, cx, radius, color, comment) {
+  const f = flower(cx, cx, radius);
   const rect = `M0,0H${size}V${size}H0Z`;
-  const arches = k.wheels.map(w => holePath(w.cx, w.cy, w.arch)).join(' ');
-  const wheels = k.wheels.map(w => `${circlePath(w.cx, w.cy, w.r)} ${holePath(w.cx, w.cy, w.hub)}`).join(' ');
   return `<?xml version="1.0" encoding="utf-8"?>
 <!-- ${comment} Generated by scripts/brand/generate.mjs -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
@@ -178,11 +156,10 @@ function monoVector(size, width, color, comment) {
     android:viewportWidth="${size}"
     android:viewportHeight="${size}">
     <group>
-        <clip-path android:pathData="${rect} ${arches}" />
-        <path android:fillColor="${color}" android:fillType="evenOdd" android:pathData="${k.body} ${k.rearWindow} ${k.frontWindow}" />
+        <clip-path android:pathData="${rect} ${holePath(cx, cx, f.gapR)}" />
+        <path android:fillColor="${color}" android:pathData="${f.petals.map(p => p.d).join(' ')}" />
     </group>
-    <path android:fillColor="${color}" android:pathData="${k.heart}" />
-    <path android:fillColor="${color}" android:pathData="${wheels}" />
+    <path android:fillColor="${color}" android:pathData="${circlePath(cx, cx, f.center.r)}" />
 </vector>
 `;
 }
@@ -299,11 +276,11 @@ if (isMain) {
   fs.writeFileSync(path.join(res, 'drawable/ic_launcher_background.xml'), vectorBackground);
   fs.writeFileSync(
     path.join(res, 'drawable/ic_launcher_monochrome.xml'),
-    monoVector(108, 62, '#FF000000', 'Themed (monochrome) launcher icon.'),
+    monoVector(108, 54, 29, '#FF000000', 'Themed (monochrome) launcher icon.'),
   );
   fs.writeFileSync(
     path.join(res, 'drawable/ic_notification.xml'),
-    monoVector(24, 23, '#FFFFFFFF', 'Status bar icon.'),
+    monoVector(24, 12, 10.5, '#FFFFFFFF', 'Status bar icon.'),
   );
 
   render(featureGraphicHtml('en'), 1024, 500, out('assets/feature-graphic.png'), { opaque: true });
@@ -312,4 +289,4 @@ if (isMain) {
   console.log('Brand assets generated.');
 }
 
-export { backgroundSvg, carSvg, iconSvg, logoSvg, monoVector, svg };
+export { backgroundSvg, flowerSvg, iconSvg, logoSvg, svg };

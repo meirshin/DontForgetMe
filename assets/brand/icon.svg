@@ -13,51 +13,49 @@
   <rect width="512" height="512" fill="url(#bgl)"/>
   <rect width="512" height="512" fill="url(#bgg)"/>
   <defs>
-    <linearGradient id="fp0" gradientUnits="userSpaceOnUse" x1="256" y1="256" x2="256" y2="90">
-      <stop offset="0.3" stop-color="#D9DFFF"/>
-      <stop offset="0.8" stop-color="#FFFFFF"/>
+    <linearGradient id="carb" gradientUnits="userSpaceOnUse" x1="0" y1="161.01" x2="0" y2="332.693">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#C9D1FF"/>
     </linearGradient>
-    <linearGradient id="fp1" gradientUnits="userSpaceOnUse" x1="256" y1="256" x2="413.875" y2="204.703">
-      <stop offset="0.3" stop-color="#D9DFFF"/>
-      <stop offset="0.8" stop-color="#FFFFFF"/>
+    <linearGradient id="carg" gradientUnits="userSpaceOnUse" x1="0" y1="161.01" x2="0" y2="248.5347524752475">
+      <stop offset="0" stop-color="#1B2070"/>
+      <stop offset="1" stop-color="#0B0E3A"/>
     </linearGradient>
-    <linearGradient id="fp2" gradientUnits="userSpaceOnUse" x1="256" y1="256" x2="353.572" y2="390.297">
-      <stop offset="0.3" stop-color="#D9DFFF"/>
-      <stop offset="0.8" stop-color="#FFFFFF"/>
-    </linearGradient>
-    <linearGradient id="fp3" gradientUnits="userSpaceOnUse" x1="256" y1="256" x2="158.428" y2="390.297">
-      <stop offset="0.3" stop-color="#D9DFFF"/>
-      <stop offset="0.8" stop-color="#FFFFFF"/>
-    </linearGradient>
-    <linearGradient id="fp4" gradientUnits="userSpaceOnUse" x1="256" y1="256" x2="98.125" y2="204.703">
-      <stop offset="0.3" stop-color="#D9DFFF"/>
-      <stop offset="0.8" stop-color="#FFFFFF"/>
-    </linearGradient>
-    <radialGradient id="fc" cx="256" cy="242.554" r="58.266000000000005" gradientUnits="userSpaceOnUse">
+    <radialGradient id="carw" gradientUnits="userSpaceOnUse" cx="180.257" cy="209.822" r="59.078700000000005">
+      <stop offset="0" stop-color="#FFB938" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#FFB938" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="carh" gradientUnits="userSpaceOnUse" x1="0" y1="187.941" x2="0" y2="231.703">
       <stop offset="0" stop-color="#FFE49A"/>
       <stop offset="1" stop-color="#FFB938"/>
+    </linearGradient>
+    <radialGradient id="caru" gradientUnits="userSpaceOnUse" cx="158.376" cy="325.96" r="15.485">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#9FB0FF"/>
     </radialGradient>
-    <radialGradient id="fci" cx="256" cy="264.964" r="26.892" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#F08A1C"/>
-      <stop offset="1" stop-color="#FFB938"/>
-    </radialGradient>
-    <mask id="fm" maskUnits="userSpaceOnUse" x="7" y="7" width="498" height="498">
-      <rect x="7" y="7" width="498" height="498" fill="#fff"/>
-      <circle cx="256" cy="256" r="56.44" fill="#000"/>
+    <clipPath id="carrc"><path d="M117.98,238.436 C128.079,208.139 138.178,176.158 171.842,176.158 L229.069,176.158 L229.069,238.436 Z"/></clipPath>
+    <mask id="carm" maskUnits="userSpaceOnUse" x="-84" y="-78" width="680" height="680">
+      <rect x="-84" y="-78" width="680" height="680" fill="#fff"/>
+      <circle cx="158.376" cy="325.96" r="47.129" fill="#000"/><circle cx="353.624" cy="325.96" r="47.129" fill="#000"/>
     </mask>
-    <filter id="fs" filterUnits="userSpaceOnUse" x="7" y="7" width="498" height="498">
-      <feDropShadow dx="0" dy="8.3" stdDeviation="9.959999999999999" flood-color="#0B0E3A" flood-opacity="0.45"/>
+    <filter id="cars" filterUnits="userSpaceOnUse" x="-84" y="-78" width="680" height="680">
+      <feDropShadow dx="0" dy="6.8" stdDeviation="8.5" flood-color="#0B0E3A" flood-opacity="0.45"/>
+    </filter>
+    <filter id="carf" filterUnits="userSpaceOnUse" x="-84" y="-78" width="680" height="680">
+      <feGaussianBlur stdDeviation="6.8"/>
     </filter>
   </defs>
-  <g mask="url(#fm)">
-    <g filter="url(#fs)">
-      <path d="M256,256 C243.716,239.4 194.58,189.6 194.58,143.12 C194.58,106.6 214.234,90 226.518,90 C241.259,90 251.086,103.28 256,123.2 C260.914,103.28 270.741,90 285.482,90 C297.766,90 317.42,106.6 317.42,143.12 C317.42,189.6 268.284,239.4 256,256 Z" fill="url(#fp0)"/>
-      <path d="M256,256 C267.992,239.188 300.17,177.067 344.375,162.704 C379.108,151.419 400.969,164.982 404.765,176.665 C409.32,190.684 399.727,204.134 382.3,214.963 C402.764,213.48 418.431,218.723 422.986,232.742 C426.782,244.425 417.068,268.247 382.335,279.532 C338.13,293.895 275.584,262.553 256,256 Z" fill="url(#fp1)"/>
-      <path d="M256,256 C275.695,262.209 344.719,273.617 372.039,311.22 C393.505,340.765 387.361,365.748 377.423,372.968 C365.498,381.632 349.742,376.665 334.058,363.437 C341.791,382.441 341.647,398.961 329.721,407.626 C319.783,414.846 294.125,412.969 272.659,383.424 C245.339,345.82 255.819,276.65 256,256 Z" fill="url(#fp2)"/>
-      <path d="M256,256 C256.181,276.65 266.661,345.82 239.341,383.424 C217.875,412.969 192.217,414.846 182.279,407.626 C170.353,398.961 170.209,382.441 177.942,363.437 C162.258,376.665 146.502,381.632 134.577,372.968 C124.639,365.748 118.495,340.765 139.961,311.22 C167.281,273.617 236.305,262.209 256,256 Z" fill="url(#fp3)"/>
-      <path d="M256,256 C236.416,262.553 173.87,293.895 129.665,279.532 C94.932,268.247 85.218,244.425 89.014,232.742 C93.569,218.723 109.236,213.48 129.7,214.963 C112.273,204.134 102.68,190.684 107.235,176.665 C111.031,164.982 132.892,151.419 167.625,162.704 C211.83,177.067 244.008,239.188 256,256 Z" fill="url(#fp4)"/>
-    </g>
+  <ellipse cx="256" cy="362.99" rx="156.4" ry="11.9" fill="#0B0E3A" opacity="0.5" filter="url(#carf)"/>
+  <g mask="url(#carm)">
+    <path d="M107.881,332.693 C94.416,332.693 87.683,322.594 87.683,309.129 L87.683,272.099 C87.683,251.901 97.782,238.436 107.881,224.97 C121.347,191.307 134.812,161.01 171.842,161.01 L282.931,161.01 C309.861,161.01 323.327,171.109 336.792,191.307 L363.723,238.436 C370.455,248.535 380.554,251.901 394.02,255.267 C417.584,260.317 427.683,268.733 427.683,288.931 L427.683,309.129 C427.683,322.594 420.95,332.693 407.485,332.693 Z" fill="url(#carb)" filter="url(#cars)"/>
   </g>
-  <circle cx="256" cy="256" r="44.82" fill="url(#fc)"/>
-  <circle cx="256" cy="256" r="21.5136" fill="url(#fci)"/>
+  <path d="M117.98,238.436 C128.079,208.139 138.178,176.158 171.842,176.158 L229.069,176.158 L229.069,238.436 Z" fill="url(#carg)"/>
+  <path d="M245.901,176.158 L279.564,176.158 C299.762,176.158 309.861,182.891 321.644,198.04 L348.574,238.436 L245.901,238.436 Z" fill="url(#carg)"/>
+  <g clip-path="url(#carrc)"><circle cx="180.257" cy="209.822" r="59.078700000000005" fill="url(#carw)"/></g>
+  <path d="M180.257,225.576 C177.632,222.95 158.376,210.697 158.376,199.756 C158.376,191.879 164.503,187.503 169.754,187.503 C175.006,187.503 178.507,190.566 180.257,194.943 C182.008,190.566 185.509,187.503 190.76,187.503 C196.012,187.503 202.139,191.879 202.139,199.756 C202.139,210.697 182.883,222.95 180.257,225.576 Z" fill="url(#carh)"/>
+  <ellipse cx="412.535" cy="273.782" rx="10.772" ry="8.079" fill="#FFE49A"/>
+  <circle cx="158.376" cy="325.96" r="37.03" fill="#0B0E3A" stroke="#9FB0FF" stroke-opacity="0.45" stroke-width="4.713"/>
+  <circle cx="158.376" cy="325.96" r="15.485" fill="url(#caru)"/>
+  <circle cx="353.624" cy="325.96" r="37.03" fill="#0B0E3A" stroke="#9FB0FF" stroke-opacity="0.45" stroke-width="4.713"/>
+  <circle cx="353.624" cy="325.96" r="15.485" fill="#9FB0FF"/>
 </svg>

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="fp0" gradientUnits="userSpaceOnUse" x1="256" y1="256" x2="256" y2="38">
+      <stop offset="0.3" stop-color="#D9DFFF"/>
+      <stop offset="0.8" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <linearGradient id="fp1" gradientUnits="userSpaceOnUse" x1="256" y1="256" x2="463.33" y2="188.634">
+      <stop offset="0.3" stop-color="#D9DFFF"/>
+      <stop offset="0.8" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <linearGradient id="fp2" gradientUnits="userSpaceOnUse" x1="256" y1="256" x2="384.137" y2="432.366">
+      <stop offset="0.3" stop-color="#D9DFFF"/>
+      <stop offset="0.8" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <linearGradient id="fp3" gradientUnits="userSpaceOnUse" x1="256" y1="256" x2="127.863" y2="432.366">
+      <stop offset="0.3" stop-color="#D9DFFF"/>
+      <stop offset="0.8" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <linearGradient id="fp4" gradientUnits="userSpaceOnUse" x1="256" y1="256" x2="48.67" y2="188.634">
+      <stop offset="0.3" stop-color="#D9DFFF"/>
+      <stop offset="0.8" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <radialGradient id="fc" cx="256" cy="238.342" r="76.518" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFE49A"/>
+      <stop offset="1" stop-color="#FFB938"/>
+    </radialGradient>
+    <radialGradient id="fci" cx="256" cy="267.772" r="35.315999999999995" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F08A1C"/>
+      <stop offset="1" stop-color="#FFB938"/>
+    </radialGradient>
+    <mask id="fm" maskUnits="userSpaceOnUse" x="-71" y="-71" width="654" height="654">
+      <rect x="-71" y="-71" width="654" height="654" fill="#fff"/>
+      <circle cx="256" cy="256" r="74.12" fill="#000"/>
+    </mask>
+    <filter id="fs" filterUnits="userSpaceOnUse" x="-71" y="-71" width="654" height="654">
+      <feDropShadow dx="0" dy="10.9" stdDeviation="13.08" flood-color="#0B0E3A" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+  <g mask="url(#fm)">
+    <g filter="url(#fs)">
+      <path d="M256,256 C239.868,234.2 175.34,168.8 175.34,107.76 C175.34,59.8 201.151,38 217.283,38 C236.642,38 249.547,55.44 256,81.6 C262.453,55.44 275.358,38 294.717,38 C310.849,38 336.66,59.8 336.66,107.76 C336.66,168.8 272.132,234.2 256,256 Z" fill="url(#fp0)"/>
+      <path d="M256,256 C271.748,233.921 314.007,152.341 372.059,133.479 C417.672,118.659 446.381,136.47 451.366,151.812 C457.348,170.223 444.75,187.887 421.864,202.107 C448.738,200.161 469.312,207.045 475.294,225.456 C480.28,240.799 467.523,272.083 421.91,286.904 C363.857,305.766 281.718,264.606 256,256 Z" fill="url(#fp1)"/>
+      <path d="M256,256 C281.865,264.154 372.51,279.136 408.389,328.518 C436.579,367.318 428.511,400.126 415.46,409.609 C399.798,420.987 379.107,414.464 358.51,397.093 C368.666,422.049 368.476,443.744 352.815,455.123 C339.764,464.605 306.068,462.14 277.878,423.339 C242,373.957 255.763,283.119 256,256 Z" fill="url(#fp2)"/>
+      <path d="M256,256 C256.237,283.119 270,373.957 234.122,423.339 C205.932,462.14 172.236,464.605 159.185,455.123 C143.524,443.744 143.334,422.049 153.49,397.093 C132.893,414.464 112.202,420.987 96.54,409.609 C83.489,400.126 75.421,367.318 103.611,328.518 C139.49,279.136 230.135,264.154 256,256 Z" fill="url(#fp3)"/>
+      <path d="M256,256 C230.282,264.606 148.143,305.766 90.09,286.904 C44.477,272.083 31.72,240.799 36.706,225.456 C42.688,207.045 63.262,200.161 90.136,202.107 C67.25,187.887 54.652,170.223 60.634,151.812 C65.619,136.47 94.328,118.659 139.941,133.479 C197.993,152.341 240.252,233.921 256,256 Z" fill="url(#fp4)"/>
+    </g>
+  </g>
+  <circle cx="256" cy="256" r="58.86" fill="url(#fc)"/>
+  <circle cx="256" cy="256" r="28.252799999999997" fill="url(#fci)"/>
+</svg>

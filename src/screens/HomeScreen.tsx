@@ -85,7 +85,7 @@ export function HomeScreen({
   onOpenSettings,
 }: HomeProps) {
   const theme = useTheme();
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const insets = useSafeAreaInsets();
   const watched = devices
     .filter(d => settings.selectedDevices.includes(d.address))
@@ -93,7 +93,9 @@ export function HomeScreen({
 
   return (
     <SafeAreaView style={styles.screen} edges={['top', 'left', 'right']}>
+      {/* Keyed by language, like the settings screen (the phone language can change while the app runs). */}
       <ScrollView
+        key={lang}
         contentContainerStyle={[
           styles.content,
           { paddingBottom: 40 + insets.bottom },
